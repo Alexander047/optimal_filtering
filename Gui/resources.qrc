@@ -9,8 +9,4 @@
         <file>Roboto.ttf</file>
         <file>RobotoMono.ttf</file>
     </qresource>
-    <qresource prefix="/icons"/>
-    <qresource prefix="/html">
-        <file>van_der_pol.xhtml</file>
-    </qresource>
 </RCC>
