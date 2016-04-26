@@ -84,6 +84,17 @@ void FilterStartButtonsBox::initLayouts()
     tab1MainLayout->setMargin (5);
     tab1MainLayout->setSpacing (5);
 
+    // tab2:
+    QHBoxLayout *tab2MainLayout = new QHBoxLayout;
+    tab2MainLayout->setMargin (5);
+    tab2MainLayout->setSpacing (5);
+
+    // tab3:
+    QHBoxLayout *tab3MainLayout = new QHBoxLayout;
+    tab3MainLayout->setMargin (5);
+    tab3MainLayout->setSpacing (5);
+
+
     QVBoxLayout *layoutCDAof = new QVBoxLayout;
     layoutCDAof->setMargin (0);
     layoutCDAof->setSpacing (5);
@@ -113,6 +124,8 @@ void FilterStartButtonsBox::initLayouts()
     tab1MainLayout->addLayout (layoutCDDfosbo);
 
     tab1->setLayout (tab1MainLayout);
+    tab2->setLayout(tab2MainLayout);
+    tab3->setLayout(tab3MainLayout);
 }
 
 void FilterStartButtonsBox::clearAll()
