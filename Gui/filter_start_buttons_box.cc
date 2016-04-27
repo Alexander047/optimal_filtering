@@ -24,6 +24,8 @@ void FilterStartButtonsBox::loadFonts()
 
 void FilterStartButtonsBox::initControls()
 {
+    // непрерывно-дискретные:
+
     m_btnContinuousDiscreteGaussAof = new QPushButton (tr ("Г-АОФ"));
     connect (m_btnContinuousDiscreteGaussAof, SIGNAL (clicked()), this,
              SLOT (btnContinuousDiscreteGaussAofClicked()));
@@ -55,6 +57,25 @@ void FilterStartButtonsBox::initControls()
     m_btnContinuousDiscreteLinearDfosbo = new QPushButton (tr ("Л-ФКП"));
     connect (m_btnContinuousDiscreteLinearDfosbo, SIGNAL (clicked()), this,
              SLOT (btnContinuousDiscreteLinearDfosboClicked()));
+
+
+    // непрерывные:
+
+    m_btnContinuousGaussAof = new QPushButton (tr ("Г-АОФ"));
+    connect (m_btnContinuousGaussAof, SIGNAL (clicked()), this,
+             SLOT (btnContinuousGaussAofClicked()));
+
+    m_btnContinuousLinearAof = new QPushButton (tr ("Л-АОФ"));
+    connect (m_btnContinuousLinearAof, SIGNAL (clicked()), this,
+             SLOT (btnContinuousLinearAofClicked()));
+
+    m_btnContinuousGaussFos = new QPushButton (tr ("Г-ФМП"));
+    connect (m_btnContinuousGaussFos, SIGNAL (clicked()), this,
+             SLOT (btnContinuousGaussFosClicked()));
+
+    m_btnContinuousLinearFos = new QPushButton (tr ("Л-ФМП"));
+    connect (m_btnContinuousLinearFos, SIGNAL (clicked()), this,
+             SLOT (btnContinuousLinearFosClicked()));
 }
 
 void FilterStartButtonsBox::computeSizes()
@@ -113,95 +134,146 @@ void FilterStartButtonsBox::initLayouts()
     tab1MainLayout->addLayout (layoutCDDfosbo);
 
     tab1->setLayout (tab1MainLayout);
+
+
+    // tab2:
+    QHBoxLayout *tab2MainLayout = new QHBoxLayout;
+    tab2MainLayout->setMargin (5);
+    tab2MainLayout->setSpacing (5);
+
+    QVBoxLayout *layoutCAof = new QVBoxLayout;
+    layoutCAof->setMargin (0);
+    layoutCAof->setSpacing (5);
+    layoutCAof->addWidget (m_btnContinuousGaussAof);
+    layoutCAof->addWidget (m_btnContinuousLinearAof);
+    tab2MainLayout->addLayout (layoutCAof);
+
+    QVBoxLayout *layoutCFos = new QVBoxLayout;
+    layoutCFos->setMargin (0);
+    layoutCFos->setSpacing (5);
+    layoutCFos->addWidget (m_btnContinuousGaussFos);
+    layoutCFos->addWidget (m_btnContinuousLinearFos);
+    tab2MainLayout->addLayout (layoutCFos);
+
+    tab2->setLayout (tab2MainLayout);
 }
 
 void FilterStartButtonsBox::clearAll()
 {
-    m_usedForLinear.clear();
-    m_usedForGauss.clear();
-    m_btnContinuousDiscreteGaussAof->setEnabled (true);
-    m_btnContinuousDiscreteLinearAof->setEnabled (true);
-    m_btnContinuousDiscreteGaussFos->setEnabled (true);
-    m_btnContinuousDiscreteLinearFos->setEnabled (true);
-    m_btnContinuousDiscreteGaussDfos->setEnabled (true);
-    m_btnContinuousDiscreteLinearDfos->setEnabled (true);
-    m_btnContinuousDiscreteGaussDfosbo->setEnabled (true);
-    m_btnContinuousDiscreteLinearDfosbo->setEnabled (true);
+//    m_usedForLinear.clear();
+//    m_usedForGauss.clear();
+//    m_btnContinuousDiscreteGaussAof->setEnabled (true);
+//    m_btnContinuousDiscreteLinearAof->setEnabled (true);
+//    m_btnContinuousDiscreteGaussFos->setEnabled (true);
+//    m_btnContinuousDiscreteLinearFos->setEnabled (true);
+//    m_btnContinuousDiscreteGaussDfos->setEnabled (true);
+//    m_btnContinuousDiscreteLinearDfos->setEnabled (true);
+//    m_btnContinuousDiscreteGaussDfosbo->setEnabled (true);
+//    m_btnContinuousDiscreteLinearDfosbo->setEnabled (true);
 }
 
-void FilterStartButtonsBox::filterOrderMultiplicityChanged (uint l)
+void FilterStartButtonsBox::filterOrderMultiplicityChanged (uint /*l*/)
 {
-    if (m_currentOrderMult == l) {
-        return;
-    }
+//    if (m_currentOrderMult == l) {
+//        return;
+//    }
 
-    bool enableG = true;
-    bool enableL = true;
-    for (int i = 0; i < m_usedForGauss.size(); i++) {
-        if (m_usedForGauss[i] == l) {
-            enableG = false;
-            i       = 100500;
-        }
-    }
-    for (int i = 0; i < m_usedForLinear.size(); i++) {
-        if (m_usedForLinear[i] == l) {
-            enableL = false;
-            i       = 100500;
-        }
-    }
+//    bool enableG = true;
+//    bool enableL = true;
+//    for (int i = 0; i < m_usedForGauss.size(); i++) {
+//        if (m_usedForGauss[i] == l) {
+//            enableG = false;
+//            i       = 100500;
+//        }
+//    }
+//    for (int i = 0; i < m_usedForLinear.size(); i++) {
+//        if (m_usedForLinear[i] == l) {
+//            enableL = false;
+//            i       = 100500;
+//        }
+//    }
 
-    m_btnContinuousDiscreteGaussDfosbo->setEnabled (enableG);
-    m_btnContinuousDiscreteLinearDfosbo->setEnabled (enableL);
-    m_currentOrderMult = l;
+//    m_btnContinuousDiscreteGaussDfosbo->setEnabled (enableG);
+//    m_btnContinuousDiscreteLinearDfosbo->setEnabled (enableL);
+//    m_currentOrderMult = l;
 }
 
+
+// непрерывно-дискретные:
 
 void FilterStartButtonsBox::btnContinuousDiscreteGaussAofClicked()
 {
-    m_btnContinuousDiscreteGaussAof->setEnabled (false);
+//    m_btnContinuousDiscreteGaussAof->setEnabled (false);
     emit filterStart (FILTER_TYPE::ContinuousDiscrete, FILTER_ID::AOF, APPROX_TYPE::Gauss);
 }
 
 void FilterStartButtonsBox::btnContinuousDiscreteLinearAofClicked()
 {
-    m_btnContinuousDiscreteLinearAof->setEnabled (false);
+//    m_btnContinuousDiscreteLinearAof->setEnabled (false);
     emit filterStart (FILTER_TYPE::ContinuousDiscrete, FILTER_ID::AOF, APPROX_TYPE::Linear);
 }
 
 void FilterStartButtonsBox::btnContinuousDiscreteGaussFosClicked()
 {
-    m_btnContinuousDiscreteGaussFos->setEnabled (false);
+//    m_btnContinuousDiscreteGaussFos->setEnabled (false);
     emit filterStart (FILTER_TYPE::ContinuousDiscrete, FILTER_ID::FOS, APPROX_TYPE::Gauss);
 }
 
 void FilterStartButtonsBox::btnContinuousDiscreteLinearFosClicked()
 {
-    m_btnContinuousDiscreteLinearFos->setEnabled (false);
+//    m_btnContinuousDiscreteLinearFos->setEnabled (false);
     emit filterStart (FILTER_TYPE::ContinuousDiscrete, FILTER_ID::FOS, APPROX_TYPE::Linear);
 }
 
 void FilterStartButtonsBox::btnContinuousDiscreteGaussDfosClicked()
 {
-    m_btnContinuousDiscreteGaussDfos->setEnabled (false);
+//    m_btnContinuousDiscreteGaussDfos->setEnabled (false);
     emit filterStart (FILTER_TYPE::ContinuousDiscrete, FILTER_ID::DFOS, APPROX_TYPE::Gauss);
 }
 
 void FilterStartButtonsBox::btnContinuousDiscreteLinearDfosClicked()
 {
-    m_btnContinuousDiscreteLinearDfos->setEnabled (false);
+//    m_btnContinuousDiscreteLinearDfos->setEnabled (false);
     emit filterStart (FILTER_TYPE::ContinuousDiscrete, FILTER_ID::DFOS, APPROX_TYPE::Linear);
 }
 
 void FilterStartButtonsBox::btnContinuousDiscreteGaussDfosboClicked()
 {
-    m_usedForGauss.append (m_currentOrderMult);
-    m_btnContinuousDiscreteGaussDfosbo->setEnabled (false);
+//    m_usedForGauss.append (m_currentOrderMult);
+//    m_btnContinuousDiscreteGaussDfosbo->setEnabled (false);
     emit filterStart (FILTER_TYPE::ContinuousDiscrete, FILTER_ID::DFOSBO, APPROX_TYPE::Gauss);
 }
 
 void FilterStartButtonsBox::btnContinuousDiscreteLinearDfosboClicked()
 {
-    m_usedForLinear.append (m_currentOrderMult);
-    m_btnContinuousDiscreteLinearDfosbo->setEnabled (false);
+//    m_usedForLinear.append (m_currentOrderMult);
+//    m_btnContinuousDiscreteLinearDfosbo->setEnabled (false);
     emit filterStart (FILTER_TYPE::ContinuousDiscrete, FILTER_ID::DFOSBO, APPROX_TYPE::Linear);
+}
+
+
+//  непрерывные:
+
+void FilterStartButtonsBox::btnContinuousGaussAofClicked()
+{
+//    m_btnContinuousGaussAof->setEnabled (false);
+    emit filterStart (FILTER_TYPE::Continuous, FILTER_ID::AOF, APPROX_TYPE::Gauss);
+}
+
+void FilterStartButtonsBox::btnContinuousLinearAofClicked()
+{
+//    m_btnContinuousLinearAof->setEnabled (false);
+    emit filterStart (FILTER_TYPE::Continuous, FILTER_ID::AOF, APPROX_TYPE::Linear);
+}
+
+void FilterStartButtonsBox::btnContinuousGaussFosClicked()
+{
+//    m_btnContinuousGaussFos->setEnabled (false);
+    emit filterStart (FILTER_TYPE::Continuous, FILTER_ID::FOS, APPROX_TYPE::Gauss);
+}
+
+void FilterStartButtonsBox::btnContinuousLinearFosClicked()
+{
+//    m_btnContinuousLinearFos->setEnabled (false);
+    emit filterStart (FILTER_TYPE::Continuous, FILTER_ID::FOS, APPROX_TYPE::Linear);
 }

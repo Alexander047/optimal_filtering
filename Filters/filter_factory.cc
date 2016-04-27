@@ -1,4 +1,5 @@
 #include "filter_factory.h"
+#include <QDebug>
 
 
 Filters::Filter *FilterFactory::createFilter (FILTER_TYPE filterType, FILTER_ID filterId,
@@ -7,14 +8,14 @@ Filters::Filter *FilterFactory::createFilter (FILTER_TYPE filterType, FILTER_ID 
 {
     Filters::Filter *filter = nullptr;
     if (filterType == FILTER_TYPE::Continuous) {
-        // TODO
-        // const CTask* task = createCTask (taskId, approxType);
-        // filter = createCFilter (filterId, input, task);
+        const CTask *task = createCTask (taskId, approxType);
+        assert (task != nullptr);
+        filter = createCFilter (filterId, input, task);
     }
     else if (filterType == FILTER_TYPE::Discrete) {
-        // TODO
-        // const DTask* task = createDTask (taskId, approxType);
-        // filter = createDFilter (filterId, input, task);
+//        const DTask *task = createDTask (taskId, approxType);
+//        assert (task != nullptr);
+//        filter = createDFilter (filterId, input, task);
     }
     else { // if (filterType == FILTER_TYPE::ContinuousDiscrete)
         const CDTask *task = createCDTask (taskId, approxType);
@@ -23,6 +24,31 @@ Filters::Filter *FilterFactory::createFilter (FILTER_TYPE filterType, FILTER_ID 
     }
     assert (filter != nullptr);
     return filter;
+}
+
+CTask *FilterFactory::createCTask (TASK_ID id, APPROX_TYPE type)
+{
+    if (type == APPROX_TYPE::Linear) {
+        switch (id) {
+        case TASK_ID::Landing:
+//            return new Tasks::Continuous::Landing::Linear;
+            qDebug() << "No Landing for continuous filters";
+            return nullptr;
+        case TASK_ID::VanDerPol:
+            return new Tasks::Continuous::VanDerPol::Linear;
+        }
+    }
+    else {
+        switch (id) {
+        case TASK_ID::Landing:
+//            return new Tasks::Continuous::Landing::Gauss;
+            qDebug() << "No Landing for continuous filters";
+            return nullptr;
+        case TASK_ID::VanDerPol:
+            return new Tasks::Continuous::VanDerPol::Gauss;
+        }
+    }
+    return nullptr;
 }
 
 CDTask *FilterFactory::createCDTask (TASK_ID id, APPROX_TYPE type)
@@ -59,6 +85,18 @@ Filters::Filter *FilterFactory::createCDFilter (FILTER_ID id,
         return new Filters::ContinuousDiscrete::DFOS (input, task);
     case FILTER_ID::DFOSBO:
         return new Filters::ContinuousDiscrete::DFOSBO (input, task);
+    }
+    return nullptr;
+}
+
+Filters::Filter *FilterFactory::createCFilter (FILTER_ID id,
+                                                const Filters::FilterParameters &input,
+                                                const CTask *task)
+{
+    switch (id) {
+    case FILTER_ID::AOF:
+        return new Filters::Continuous::AOF (input, task);
+        //TODO
     }
     return nullptr;
 }

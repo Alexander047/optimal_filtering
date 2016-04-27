@@ -20,7 +20,7 @@ public:
           : ContinuousDiscreteFilter (input, task, parent)
     {
         uint n = task->dimX();
-        m_name = m_type + " " + m_task->approxType() + "ФМП (" + std::to_string (n) + ")";
+        m_name = m_task->approxType() +  "ФКПнд-нп (" + std::to_string (n) + ")";
     }
 
 

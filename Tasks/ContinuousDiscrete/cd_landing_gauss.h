@@ -1,7 +1,7 @@
 #ifndef CONTINUOUS_DISCRETE_LANDING_GAUSS_H
 #define CONTINUOUS_DISCRETE_LANDING_GAUSS_H
 
-#include "landing_linear.h"
+#include "cd_landing_linear.h"
 
 
 namespace Tasks

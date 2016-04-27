@@ -16,11 +16,6 @@ SOURCES += main.cpp\
     Core/linear_algebra.cc \
     Core/prng.cc \
     Core/stochastic.cc \
-    Filters/ContinuousDiscrete/aof.cc \
-    Filters/ContinuousDiscrete/continuous_discrete_filter.cc \
-    Filters/ContinuousDiscrete/dfos.cc \
-    Filters/ContinuousDiscrete/dfosbo.cc \
-    Filters/ContinuousDiscrete/fos.cc \
     Filters/filter.cc \
     Filters/filter_factory.cc \
     Filters/filter_parameters.cc \
@@ -31,15 +26,24 @@ SOURCES += main.cpp\
     Gui/graph_window.cc \
     Gui/task_widget.cc \
     Libs/QCustomPlot/qcustomplot.cc \
-    Tasks/ContinuousDiscrete/landing_gauss.cc \
-    Tasks/ContinuousDiscrete/landing_linear.cc \
-    Tasks/ContinuousDiscrete/van_der_pol_gauss.cc \
-    Tasks/ContinuousDiscrete/van_der_pol_linear.cc \
     Tasks/specific_parameters.cc \
     Tasks/task.cc \
     Gui/main_window.cc \
     Gui/ranges_dialog.cc \
-    Gui/specific_parameters_window.cc
+    Gui/specific_parameters_window.cc \
+    Filters/ContinuousDiscrete/cd_aof.cc \
+    Filters/ContinuousDiscrete/cd_dfos.cc \
+    Filters/ContinuousDiscrete/continuous_discrete_filter.cc \
+    Filters/ContinuousDiscrete/cd_dfosbo.cc \
+    Filters/ContinuousDiscrete/cd_fos.cc \
+    Tasks/ContinuousDiscrete/cd_landing_gauss.cc \
+    Tasks/ContinuousDiscrete/cd_landing_linear.cc \
+    Tasks/ContinuousDiscrete/cd_van_der_pol_gauss.cc \
+    Tasks/ContinuousDiscrete/cd_van_der_pol_linear.cc \
+    Filters/Continuous/c_aof.cc \
+    Filters/Continuous/continuous_filter.cc \
+    Tasks/Continuous/c_van_der_pol_gauss.cc \
+    Tasks/Continuous/c_van_der_pol_linear.cc
 
 HEADERS  += \
     Core/array.h \
@@ -49,11 +53,7 @@ HEADERS  += \
     Core/ode.h \
     Core/prng.h \
     Core/stochastic.h \
-    Filters/ContinuousDiscrete/aof.h \
     Filters/ContinuousDiscrete/continuous_discrete_filter.h \
-    Filters/ContinuousDiscrete/dfos.h \
-    Filters/ContinuousDiscrete/dfosbo.h \
-    Filters/ContinuousDiscrete/fos.h \
     Filters/filter.h \
     Filters/filter_factory.h \
     Filters/filter_output.h \
@@ -321,16 +321,25 @@ HEADERS  += \
     Libs/Eigen/src/UmfPackSupport/UmfPackSupport.h \
     Libs/QCustomPlot/qcustomplot.h \
     Tasks/ContinuousDiscrete/continuous_discrete_task.h \
-    Tasks/ContinuousDiscrete/landing_gauss.h \
-    Tasks/ContinuousDiscrete/landing_linear.h \
-    Tasks/ContinuousDiscrete/van_der_pol_gauss.h \
-    Tasks/ContinuousDiscrete/van_der_pol_linear.h \
     Tasks/specific_parameters.h \
     Tasks/task.h \
     Tasks/tasks.h \
     Gui/main_window.h \
     Gui/ranges_dialog.h \
-    Gui/specific_parameters_window.h
+    Gui/specific_parameters_window.h \
+    Tasks/Continuous/continuous_task.h \
+    Filters/ContinuousDiscrete/cd_aof.h \
+    Filters/ContinuousDiscrete/cd_dfos.h \
+    Filters/ContinuousDiscrete/cd_dfosbo.h \
+    Filters/ContinuousDiscrete/cd_fos.h \
+    Tasks/ContinuousDiscrete/cd_landing_gauss.h \
+    Tasks/ContinuousDiscrete/cd_landing_linear.h \
+    Tasks/ContinuousDiscrete/cd_van_der_pol_gauss.h \
+    Tasks/ContinuousDiscrete/cd_van_der_pol_linear.h \
+    Filters/Continuous/c_aof.h \
+    Filters/Continuous/continuous_filter.h \
+    Tasks/Continuous/c_van_der_pol_gauss.h \
+    Tasks/Continuous/c_van_der_pol_linear.h
 
 RESOURCES += \
     Gui/resources.qrc

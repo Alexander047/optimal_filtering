@@ -1,7 +1,7 @@
 #ifndef CONTINUOUS_DISCRETE_VANDERPOL_GAUSS_H
 #define CONTINUOUS_DISCRETE_VANDERPOL_GAUSS_H
 
-#include "van_der_pol_linear.h"
+#include "cd_van_der_pol_linear.h"
 
 
 namespace Tasks
