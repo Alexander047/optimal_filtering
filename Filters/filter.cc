@@ -67,7 +67,7 @@ void Filter::writeResult (size_t n, bool copy)
         m_result[n].De = Cov (e, m_result[n].me);
     }
 
-    emit updatePercent (100 * n / m_result.size());
+    emit updatePercent (int (100 * n / m_result.size()));
 }
 
 }  // end Filters

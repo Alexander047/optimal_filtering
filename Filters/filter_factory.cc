@@ -18,7 +18,8 @@ Filters::Filter *FilterFactory::createFilter (FILTER_TYPE filterType, FILTER_ID 
     }
     else { // if (filterType == FILTER_TYPE::ContinuousDiscrete)
         const CDTask *task = createCDTask (taskId, approxType);
-        filter             = createCDFilter (filterId, input, task);
+        assert (task != nullptr);
+        filter = createCDFilter (filterId, input, task);
     }
     assert (filter != nullptr);
     return filter;
@@ -26,37 +27,23 @@ Filters::Filter *FilterFactory::createFilter (FILTER_TYPE filterType, FILTER_ID 
 
 CDTask *FilterFactory::createCDTask (TASK_ID id, APPROX_TYPE type)
 {
-    CDTask *task = nullptr;
-
     if (type == APPROX_TYPE::Linear) {
         switch (id) {
         case TASK_ID::Landing:
-            task = new Tasks::ContinuousDiscrete::Landing::Linear;
-            break;
+            return new Tasks::ContinuousDiscrete::Landing::Linear;
         case TASK_ID::VanDerPol:
-            task = new Tasks::ContinuousDiscrete::VanDerPol::Linear;
-            break;
-        default:
-            task = nullptr;
-            break;
+            return new Tasks::ContinuousDiscrete::VanDerPol::Linear;
         }
     }
     else {
         switch (id) {
         case TASK_ID::Landing:
-            task = new Tasks::ContinuousDiscrete::Landing::Gauss;
-            break;
+            return new Tasks::ContinuousDiscrete::Landing::Gauss;
         case TASK_ID::VanDerPol:
-            task = new Tasks::ContinuousDiscrete::VanDerPol::Gauss;
-            break;
-        default:
-            task = nullptr;
-            break;
+            return new Tasks::ContinuousDiscrete::VanDerPol::Gauss;
         }
     }
-
-    assert (task != nullptr);
-    return task;
+    return nullptr;
 }
 
 Filters::Filter *FilterFactory::createCDFilter (FILTER_ID id,
@@ -66,17 +53,12 @@ Filters::Filter *FilterFactory::createCDFilter (FILTER_ID id,
     switch (id) {
     case FILTER_ID::AOF:
         return new Filters::ContinuousDiscrete::AOF (input, task);
-        break;
     case FILTER_ID::FOS:
         return new Filters::ContinuousDiscrete::FOS (input, task);
-        break;
     case FILTER_ID::DFOS:
         return new Filters::ContinuousDiscrete::DFOS (input, task);
-        break;
     case FILTER_ID::DFOSBO:
         return new Filters::ContinuousDiscrete::DFOSBO (input, task);
-        break;
-    default:
-        return nullptr;
     }
+    return nullptr;
 }

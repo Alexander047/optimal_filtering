@@ -1,5 +1,5 @@
-#ifndef VANDERPOLGAUSS_H
-#define VANDERPOLGAUSS_H
+#ifndef CONTINUOUS_DISCRETE_VANDERPOL_GAUSS_H
+#define CONTINUOUS_DISCRETE_VANDERPOL_GAUSS_H
 
 #include "van_der_pol_linear.h"
 
@@ -41,4 +41,4 @@ protected:
 }  // end Tasks
 
 
-#endif  // VANDERPOLGAUSS_H
+#endif  // CONTINUOUS_DISCRETE_VANDERPOL_GAUSS_H

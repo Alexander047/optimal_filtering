@@ -1,5 +1,5 @@
-#ifndef DFOS_H
-#define DFOS_H
+#ifndef CONTINUOUS_DISCRETE_DFOS_H
+#define CONTINUOUS_DISCRETE_DFOS_H
 
 #include "continuous_discrete_filter.h"
 
@@ -38,4 +38,4 @@ protected:
 }  // end Filters
 
 
-#endif  // DFOS_H
+#endif  // CONTINUOUS_DISCRETE_DFOS_H

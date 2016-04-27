@@ -1,5 +1,5 @@
-#ifndef DFOSBO_H
-#define DFOSBO_H
+#ifndef CONTINUOUS_DISCRETE_DFOSBO_H
+#define CONTINUOUS_DISCRETE_DFOSBO_H
 
 #include "continuous_discrete_filter.h"
 
@@ -42,4 +42,4 @@ protected:
 }  // end Filters
 
 
-#endif  // DFOSBO_H
+#endif  // CONTINUOUS_DISCRETE_DFOSBO_H

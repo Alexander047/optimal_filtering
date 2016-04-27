@@ -1,5 +1,5 @@
-#ifndef CD_AOF_H
-#define CD_AOF_H
+#ifndef CONTINUOUS_DISCRETE_AOF_H
+#define CONTINUOUS_DISCRETE_AOF_H
 
 #include "continuous_discrete_filter.h"
 
@@ -43,4 +43,4 @@ protected:
 }  // end Filters
 
 
-#endif  // CD_AOF_H
+#endif  // CONTINUOUS_DISCRETE_AOF_H

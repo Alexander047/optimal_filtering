@@ -1,5 +1,5 @@
-#ifndef LANDINGGAUSS_H
-#define LANDINGGAUSS_H
+#ifndef CONTINUOUS_DISCRETE_LANDING_GAUSS_H
+#define CONTINUOUS_DISCRETE_LANDING_GAUSS_H
 
 #include "landing_linear.h"
 
@@ -28,4 +28,4 @@ public:
 
 }  // end Tasks
 
-#endif  // LANDINGGAUSS_H
+#endif  // CONTINUOUS_DISCRETE_LANDING_GAUSS_H

@@ -15,7 +15,6 @@ namespace Const
 {
 
 static const double PI  = 3.14159265358979323846;
-static const double E   = 2.71828182845904523536;
 static const double EPS = std::numeric_limits< double >::epsilon();
 static const double MIN = std::numeric_limits< double >::min();
 static const double MAX = std::numeric_limits< double >::max();
