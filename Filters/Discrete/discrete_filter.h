@@ -7,7 +7,7 @@
 namespace Filters
 {
 
-namespace ContinuousDiscrete
+namespace Discrete
 {
 
 
@@ -21,6 +21,13 @@ public:
 protected:
 
     void zeroIteration() override;
+
+
+protected:
+
+    const DTask *m_task;
+    Vector h;
+    Matrix G, F;
 };
 
 }  // end Discrete

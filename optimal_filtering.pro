@@ -42,7 +42,12 @@ SOURCES += main.cpp\
     Tasks/task.cc \
     Gui/main_window.cc \
     Gui/ranges_dialog.cc \
-    Gui/specific_parameters_window.cc
+    Gui/specific_parameters_window.cc \
+    Tasks/Discrete/d_landing_gauss.cc \
+    Tasks/Discrete/d_landing_linear.cc \
+    Tasks/Discrete/d_van_der_pol_gauss.cc \
+    Tasks/Discrete/d_van_der_pol_linear.cc \
+    Filters/Discrete/discrete_filter.cc
 
 HEADERS  += \
     Core/array.h \
@@ -333,7 +338,13 @@ HEADERS  += \
     Tasks/tasks.h \
     Gui/main_window.h \
     Gui/ranges_dialog.h \
-    Gui/specific_parameters_window.h
+    Gui/specific_parameters_window.h \
+    Tasks/Discrete/d_landing_gauss.h \
+    Tasks/Discrete/d_landing_linear.h \
+    Tasks/Discrete/d_van_der_pol_gauss.h \
+    Tasks/Discrete/d_van_der_pol_linear.h \
+    Tasks/Discrete/discrete_task.h \
+    Filters/Discrete/discrete_filter.h
 
 RESOURCES += \
     Gui/resources.qrc
