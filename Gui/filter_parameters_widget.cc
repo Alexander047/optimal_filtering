@@ -38,7 +38,7 @@ SingleParamHBox::SingleParamHBox (QWidget *w1, QWidget *w2, QWidget *w3, QWidget
 FilterParametersWidget::FilterParametersWidget (QWidget *parent)
       : QGroupBox (parent),
         m_updateOn (true),
-        m_filterParams (Filters::FilterParameters (100.0, 1.0, 0.1, 0.01, 1, 1000))
+        m_filterParams (Filters::FilterParameters (20.0, 1.0, 0.1, 0.01, 1, 100))
 {
     loadFonts();
     initControls();
@@ -137,10 +137,10 @@ void FilterParametersWidget::initControls()
              SLOT (orderMultiplicityChanged (int) ));
 
     m_sbSampleSize = new QSpinBox;
-    m_sbSampleSize->setMinimum (100);
+    m_sbSampleSize->setMinimum (20);
     m_sbSampleSize->setMaximum (5000);
     m_sbSampleSize->setSingleStep (50);
-    m_sbSampleSize->setValue (1000);
+    m_sbSampleSize->setValue (100);
     m_sbSampleSize->setFont (m_monotypeFont);
     connect (m_sbSampleSize, SIGNAL (valueChanged (int) ), this, SLOT (sampleSizeChanged (int) ));
 

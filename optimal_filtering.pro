@@ -45,9 +45,10 @@ SOURCES += main.cpp\
     Gui/specific_parameters_window.cc \
     Tasks/Discrete/d_landing_gauss.cc \
     Tasks/Discrete/d_landing_linear.cc \
+    Filters/Discrete/discrete_filter.cc \
     Tasks/Discrete/d_van_der_pol_gauss.cc \
     Tasks/Discrete/d_van_der_pol_linear.cc \
-    Filters/Discrete/discrete_filter.cc
+    Filters/Discrete/fosmp.cc
 
 HEADERS  += \
     Core/array.h \
@@ -341,10 +342,11 @@ HEADERS  += \
     Gui/specific_parameters_window.h \
     Tasks/Discrete/d_landing_gauss.h \
     Tasks/Discrete/d_landing_linear.h \
+    Tasks/Discrete/discrete_task.h \
+    Filters/Discrete/discrete_filter.h \
     Tasks/Discrete/d_van_der_pol_gauss.h \
     Tasks/Discrete/d_van_der_pol_linear.h \
-    Tasks/Discrete/discrete_task.h \
-    Filters/Discrete/discrete_filter.h
+    Filters/Discrete/fosmp.h
 
 RESOURCES += \
     Gui/resources.qrc

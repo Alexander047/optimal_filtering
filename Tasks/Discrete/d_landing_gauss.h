@@ -13,10 +13,11 @@ namespace Discrete
 namespace Landing
 {
 
-class DGauss : public DLinear
-{
+class DGauss : public DLinear {
+
 public:
     DGauss();
+
 };
 
 }  // end Tasks::Discrete::Landing

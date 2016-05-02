@@ -10,9 +10,9 @@ namespace Landing
 {
 
 
-DGauss::DGauss()
+DGauss::DGauss() : DLinear()
 {
-
+    m_approxType = "Г-";
 }
 
 }  // end Tasks::Discrete::Landing

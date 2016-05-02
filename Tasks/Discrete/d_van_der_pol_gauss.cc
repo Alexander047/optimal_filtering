@@ -10,10 +10,10 @@ namespace VanDerPol
 {
 
 
-DGauss::DGauss()
+DGauss::DGauss() : DLinear()
 {
 
-}
+};
 
 }  // end Tasks::Discrete::VanDerPol
 

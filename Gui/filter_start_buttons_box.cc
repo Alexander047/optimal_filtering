@@ -55,6 +55,15 @@ void FilterStartButtonsBox::initControls()
     m_btnContinuousDiscreteLinearDfosbo = new QPushButton (tr ("Л-ФКП"));
     connect (m_btnContinuousDiscreteLinearDfosbo, SIGNAL (clicked()), this,
              SLOT (btnContinuousDiscreteLinearDfosboClicked()));
+
+    m_btnDiscreteLinearFOSmp = new QPushButton (tr ("Л-ФОСмп"));
+    connect (m_btnDiscreteLinearFOSmp, SIGNAL (clicked()), this,
+             SLOT (btnDiscreteLinearFOSmpClicked()));
+
+    m_btnDiscreteGaussFOSmp = new QPushButton (tr ("Г-ФОСмп"));
+    connect (m_btnDiscreteGaussFOSmp, SIGNAL (clicked()), this,
+             SLOT (btnDiscreteGaussFOSmpClicked()));
+
 }
 
 void FilterStartButtonsBox::computeSizes()
@@ -94,7 +103,7 @@ void FilterStartButtonsBox::initLayouts()
     tab3MainLayout->setMargin (5);
     tab3MainLayout->setSpacing (5);
 
-
+    // непрерывно-дискретные фильтры
     QVBoxLayout *layoutCDAof = new QVBoxLayout;
     layoutCDAof->setMargin (0);
     layoutCDAof->setSpacing (5);
@@ -123,6 +132,15 @@ void FilterStartButtonsBox::initLayouts()
     layoutCDDfosbo->addWidget (m_btnContinuousDiscreteLinearDfosbo);
     tab1MainLayout->addLayout (layoutCDDfosbo);
 
+
+    // дискретные фильтры
+    QVBoxLayout *layoutDformp = new QVBoxLayout;
+    layoutDformp->setMargin (0);
+    layoutDformp->setSpacing (5);
+    layoutDformp->addWidget (m_btnDiscreteGaussFOSmp);
+    layoutDformp->addWidget (m_btnDiscreteLinearFOSmp);
+    tab3MainLayout->addLayout (layoutDformp);
+
     tab1->setLayout (tab1MainLayout);
     tab2->setLayout(tab2MainLayout);
     tab3->setLayout(tab3MainLayout);
@@ -140,6 +158,9 @@ void FilterStartButtonsBox::clearAll()
     m_btnContinuousDiscreteLinearDfos->setEnabled (true);
     m_btnContinuousDiscreteGaussDfosbo->setEnabled (true);
     m_btnContinuousDiscreteLinearDfosbo->setEnabled (true);
+
+    m_btnDiscreteLinearFOSmp->setEnabled(true);
+    m_btnDiscreteGaussFOSmp->setEnabled(true);
 }
 
 void FilterStartButtonsBox::filterOrderMultiplicityChanged (uint l)
@@ -217,4 +238,15 @@ void FilterStartButtonsBox::btnContinuousDiscreteLinearDfosboClicked()
     m_usedForLinear.append (m_currentOrderMult);
     m_btnContinuousDiscreteLinearDfosbo->setEnabled (false);
     emit filterStart (FILTER_TYPE::ContinuousDiscrete, FILTER_ID::DFOSBO, APPROX_TYPE::Linear);
+}
+
+
+void FilterStartButtonsBox::btnDiscreteGaussFOSmpClicked() {
+    m_btnDiscreteGaussFOSmp->setEnabled(false);
+    emit filterStart (FILTER_TYPE::Discrete, FILTER_ID::FOSmp, APPROX_TYPE::Gauss);
+}
+
+void FilterStartButtonsBox::btnDiscreteLinearFOSmpClicked() {
+    m_btnDiscreteLinearFOSmp->setEnabled(false);
+    emit filterStart (FILTER_TYPE::Discrete, FILTER_ID::FOSmp, APPROX_TYPE::Linear);
 }

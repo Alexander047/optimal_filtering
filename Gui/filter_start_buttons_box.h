@@ -48,6 +48,8 @@ private slots:
     void btnContinuousDiscreteGaussDfosboClicked();
     void btnContinuousDiscreteLinearDfosboClicked();
 
+    void btnDiscreteLinearFOSmpClicked();
+    void btnDiscreteGaussFOSmpClicked();
 
 private:
 
@@ -63,6 +65,9 @@ private:
     QPushButton *m_btnContinuousDiscreteLinearDfos;
     QPushButton *m_btnContinuousDiscreteGaussDfosbo;
     QPushButton *m_btnContinuousDiscreteLinearDfosbo;
+
+    QPushButton *m_btnDiscreteLinearFOSmp;
+    QPushButton *m_btnDiscreteGaussFOSmp;
 
     void loadFonts();
     void initLayouts();
