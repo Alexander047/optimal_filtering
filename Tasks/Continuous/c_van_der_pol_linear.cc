@@ -40,7 +40,7 @@ Vector Linear::funcA  (const Vector &x, double /*t*/) const
 {
     Vector a (2);
     a << x[1],
-         -omega * omega *x[0] + alpha * x[1] - alpha * beta * x[0] * x[0] * x[1];
+         -omega * omega * x[0] + alpha * x[1] - alpha * beta * x[0] * x[0] * x[1];
     return a;
 }
 

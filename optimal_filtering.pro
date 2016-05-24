@@ -46,7 +46,8 @@ SOURCES +=\
     Tasks/Continuous/c_van_der_pol_gauss.cc \
     Tasks/Continuous/c_van_der_pol_linear.cc \
     main.cc \
-    Core/bvp.cc
+    Core/bvp.cc \
+    Filters/Continuous/c_fos.cc
 
 HEADERS  += \
     Core/array.h \
@@ -375,7 +376,8 @@ HEADERS  += \
     Libs/Eigen/StdVector \
     Libs/Eigen/SuperLUSupport \
     Libs/Eigen/SVD \
-    Libs/Eigen/UmfPackSupport
+    Libs/Eigen/UmfPackSupport \
+    Filters/Continuous/c_fos.h
 
 RESOURCES += \
     Gui/resources.qrc

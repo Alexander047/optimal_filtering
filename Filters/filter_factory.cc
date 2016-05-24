@@ -96,7 +96,14 @@ Filters::Filter *FilterFactory::createCFilter (FILTER_ID id,
     switch (id) {
     case FILTER_ID::AOF:
         return new Filters::Continuous::AOF (input, task);
-        //TODO
+    case FILTER_ID::FOS:
+        return new Filters::Continuous::FOS (input, task);
+    case FILTER_ID::DFOS:
+        qDebug() << "No DFOS as continuous filter!";
+        return nullptr;
+    case FILTER_ID::DFOSBO:
+        qDebug() << "No DFOSBO as continuous filter!";
+        return nullptr;
     }
     return nullptr;
 }

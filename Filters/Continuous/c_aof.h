@@ -27,7 +27,8 @@ protected:
 
 protected:
 
-    Array< Matrix > P, dy;
+    Array< Matrix > P;
+    Array< Vector> dy;
 };
 
 
