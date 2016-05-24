@@ -1,7 +1,7 @@
 #ifndef LANDINGGAUSS_H
 #define LANDINGGAUSS_H
 
-#include "landing_linear.h"
+#include "cd_landing_linear.h"
 
 
 namespace Tasks

@@ -19,7 +19,7 @@ public:
         setDefaultRhs();
     }
 
-    explicit Ode (Type (*f) (double, double, const Type &))
+    Ode (Type (*f) (double, const Type &))
     {
         setRhs (f);
     }
@@ -29,8 +29,13 @@ public:
 
     void setRhs (Type (*f) (double, const Type &))
     {
-        m_userRhs        = f;
-        m_useDefaultRhs = false;
+        if (f != nullptr) {
+            m_userRhs       = f;
+            m_useDefaultRhs = false;
+        }
+        else {
+            setDefaultRhs ();
+        }
     }
 
     void setDefaultRhs()
@@ -56,7 +61,7 @@ protected:
     //можно сделать наследника с определенной правой частью:
     virtual Type defaultRhs (double, const Type &)
     {
-        return 0;
+        return Type();
     }
 
     //или передать указатель на правую часть:

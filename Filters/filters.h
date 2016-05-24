@@ -1,9 +1,9 @@
 #ifndef FILTERS_H
 #define FILTERS_H
 
-#include "ContinuousDiscrete/aof.h"
-#include "ContinuousDiscrete/fos.h"
-#include "ContinuousDiscrete/dfos.h"
-#include "ContinuousDiscrete/dfosbo.h"
+#include "ContinuousDiscrete/cd_aof.h"
+#include "ContinuousDiscrete/cd_fos.h"
+#include "ContinuousDiscrete/cd_dfos.h"
+#include "ContinuousDiscrete/cd_dfosbo.h"
 
 #endif  // FILTERS_H

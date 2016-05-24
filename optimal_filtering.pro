@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui printsupport
+CONFIG   += c++11
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -12,15 +13,11 @@ TARGET = OptimalFiltering
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
+SOURCES +=\
     Core/linear_algebra.cc \
     Core/prng.cc \
     Core/stochastic.cc \
-    Filters/ContinuousDiscrete/aof.cc \
     Filters/ContinuousDiscrete/continuous_discrete_filter.cc \
-    Filters/ContinuousDiscrete/dfos.cc \
-    Filters/ContinuousDiscrete/dfosbo.cc \
-    Filters/ContinuousDiscrete/fos.cc \
     Filters/filter.cc \
     Filters/filter_factory.cc \
     Filters/filter_parameters.cc \
@@ -31,15 +28,21 @@ SOURCES += main.cpp\
     Gui/graph_window.cc \
     Gui/task_widget.cc \
     Libs/QCustomPlot/qcustomplot.cc \
-    Tasks/ContinuousDiscrete/landing_gauss.cc \
-    Tasks/ContinuousDiscrete/landing_linear.cc \
-    Tasks/ContinuousDiscrete/van_der_pol_gauss.cc \
-    Tasks/ContinuousDiscrete/van_der_pol_linear.cc \
     Tasks/specific_parameters.cc \
     Tasks/task.cc \
     Gui/main_window.cc \
     Gui/ranges_dialog.cc \
-    Gui/specific_parameters_window.cc
+    Gui/specific_parameters_window.cc \
+    main.cc \
+    Filters/ContinuousDiscrete/cd_aof.cc \
+    Filters/ContinuousDiscrete/cd_dfos.cc \
+    Filters/ContinuousDiscrete/cd_dfosbo.cc \
+    Filters/ContinuousDiscrete/cd_fos.cc \
+    Tasks/ContinuousDiscrete/cd_landing_gauss.cc \
+    Tasks/ContinuousDiscrete/cd_landing_linear.cc \
+    Tasks/ContinuousDiscrete/cd_van_der_pol_gauss.cc \
+    Tasks/ContinuousDiscrete/cd_van_der_pol_linear.cc \
+    Core/bvp.cc
 
 HEADERS  += \
     Core/array.h \
@@ -49,11 +52,7 @@ HEADERS  += \
     Core/ode.h \
     Core/prng.h \
     Core/stochastic.h \
-    Filters/ContinuousDiscrete/aof.h \
     Filters/ContinuousDiscrete/continuous_discrete_filter.h \
-    Filters/ContinuousDiscrete/dfos.h \
-    Filters/ContinuousDiscrete/dfosbo.h \
-    Filters/ContinuousDiscrete/fos.h \
     Filters/filter.h \
     Filters/filter_factory.h \
     Filters/filter_output.h \
@@ -321,16 +320,97 @@ HEADERS  += \
     Libs/Eigen/src/UmfPackSupport/UmfPackSupport.h \
     Libs/QCustomPlot/qcustomplot.h \
     Tasks/ContinuousDiscrete/continuous_discrete_task.h \
-    Tasks/ContinuousDiscrete/landing_gauss.h \
-    Tasks/ContinuousDiscrete/landing_linear.h \
-    Tasks/ContinuousDiscrete/van_der_pol_gauss.h \
-    Tasks/ContinuousDiscrete/van_der_pol_linear.h \
     Tasks/specific_parameters.h \
     Tasks/task.h \
     Tasks/tasks.h \
     Gui/main_window.h \
     Gui/ranges_dialog.h \
-    Gui/specific_parameters_window.h
+    Gui/specific_parameters_window.h \
+    Tasks/ContinuousDiscrete/cd_van_der_pol_linear.h \
+    Tasks/ContinuousDiscrete/cd_landing_gauss.h \
+    Tasks/ContinuousDiscrete/cd_van_der_pol_gauss.h \
+    Tasks/ContinuousDiscrete/cd_landing_linear.h \
+    Filters/ContinuousDiscrete/cd_aof.h \
+    Filters/ContinuousDiscrete/cd_dfos.h \
+    Filters/ContinuousDiscrete/cd_dfosbo.h \
+    Filters/ContinuousDiscrete/cd_fos.h \
+    Core/bvp.h \
+    Libs/Eigen/Array \
+    Libs/Eigen/Cholesky \
+    Libs/Eigen/CholmodSupport \
+    Libs/Eigen/Core \
+    Libs/Eigen/Dense \
+    Libs/Eigen/Eigen \
+    Libs/Eigen/Eigen2Support \
+    Libs/Eigen/Eigenvalues \
+    Libs/Eigen/Geometry \
+    Libs/Eigen/Householder \
+    Libs/Eigen/IterativeLinearSolvers \
+    Libs/Eigen/Jacobi \
+    Libs/Eigen/LeastSquares \
+    Libs/Eigen/LU \
+    Libs/Eigen/MetisSupport \
+    Libs/Eigen/OrderingMethods \
+    Libs/Eigen/PardisoSupport \
+    Libs/Eigen/PaStiXSupport \
+    Libs/Eigen/QR \
+    Libs/Eigen/QtAlignedMalloc \
+    Libs/Eigen/Sparse \
+    Libs/Eigen/SparseCholesky \
+    Libs/Eigen/SparseCore \
+    Libs/Eigen/SparseLU \
+    Libs/Eigen/SparseQR \
+    Libs/Eigen/SPQRSupport \
+    Libs/Eigen/StdDeque \
+    Libs/Eigen/StdList \
+    Libs/Eigen/StdVector \
+    Libs/Eigen/SuperLUSupport \
+    Libs/Eigen/SVD \
+    Libs/Eigen/UmfPackSupport
 
 RESOURCES += \
     Gui/resources.qrc
+
+DISTFILES += \
+    Gui/formula_style.css \
+    Libs/QCustomPlot/changelog.txt \
+    Libs/QCustomPlot/GPL.txt \
+    Libs/Eigen/src/Cholesky/CMakeLists.txt \
+    Libs/Eigen/src/CholmodSupport/CMakeLists.txt \
+    Libs/Eigen/src/Core/arch/AltiVec/CMakeLists.txt \
+    Libs/Eigen/src/Core/arch/Default/CMakeLists.txt \
+    Libs/Eigen/src/Core/arch/NEON/CMakeLists.txt \
+    Libs/Eigen/src/Core/arch/SSE/CMakeLists.txt \
+    Libs/Eigen/src/Core/arch/CMakeLists.txt \
+    Libs/Eigen/src/Core/products/CMakeLists.txt \
+    Libs/Eigen/src/Core/util/CMakeLists.txt \
+    Libs/Eigen/src/Core/CMakeLists.txt \
+    Libs/Eigen/src/Eigen2Support/Geometry/CMakeLists.txt \
+    Libs/Eigen/src/Eigen2Support/CMakeLists.txt \
+    Libs/Eigen/src/Eigenvalues/CMakeLists.txt \
+    Libs/Eigen/src/Geometry/arch/CMakeLists.txt \
+    Libs/Eigen/src/Geometry/CMakeLists.txt \
+    Libs/Eigen/src/Householder/CMakeLists.txt \
+    Libs/Eigen/src/IterativeLinearSolvers/CMakeLists.txt \
+    Libs/Eigen/src/Jacobi/CMakeLists.txt \
+    Libs/Eigen/src/LU/arch/CMakeLists.txt \
+    Libs/Eigen/src/LU/CMakeLists.txt \
+    Libs/Eigen/src/MetisSupport/CMakeLists.txt \
+    Libs/Eigen/src/misc/CMakeLists.txt \
+    Libs/Eigen/src/OrderingMethods/CMakeLists.txt \
+    Libs/Eigen/src/PardisoSupport/CMakeLists.txt \
+    Libs/Eigen/src/PaStiXSupport/CMakeLists.txt \
+    Libs/Eigen/src/plugins/CMakeLists.txt \
+    Libs/Eigen/src/QR/CMakeLists.txt \
+    Libs/Eigen/src/SparseCholesky/CMakeLists.txt \
+    Libs/Eigen/src/SparseCore/CMakeLists.txt \
+    Libs/Eigen/src/SparseLU/CMakeLists.txt \
+    Libs/Eigen/src/SparseQR/CMakeLists.txt \
+    Libs/Eigen/src/SPQRSupport/CMakeLists.txt \
+    Libs/Eigen/src/StlSupport/CMakeLists.txt \
+    Libs/Eigen/src/SuperLUSupport/CMakeLists.txt \
+    Libs/Eigen/src/SVD/CMakeLists.txt \
+    Libs/Eigen/src/UmfPackSupport/CMakeLists.txt \
+    Libs/Eigen/src/CMakeLists.txt \
+    Libs/Eigen/CMakeLists.txt \
+    README.md
