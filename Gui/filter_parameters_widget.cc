@@ -81,7 +81,7 @@ void FilterParametersWidget::initControls()
 {
     m_dsbMaxTime = new QDoubleSpinBox;
     m_dsbMaxTime->setDecimals (2);
-    m_dsbMaxTime->setMinimum (1.0);
+    m_dsbMaxTime->setMinimum (0.5);
     m_dsbMaxTime->setMaximum (1000.0);
     m_dsbMaxTime->setSingleStep (1.0);
     m_dsbMaxTime->setValue (100.0);
@@ -119,7 +119,7 @@ void FilterParametersWidget::initControls()
 
     m_dsbIntegrationStep = new QDoubleSpinBox;
     m_dsbIntegrationStep->setDecimals (4);
-    m_dsbIntegrationStep->setMinimum (0.001);
+    m_dsbIntegrationStep->setMinimum (0.0001);
     m_dsbIntegrationStep->setMaximum (0.1);
     m_dsbIntegrationStep->setSingleStep (0.0001);
     m_dsbIntegrationStep->setValue (0.01);
