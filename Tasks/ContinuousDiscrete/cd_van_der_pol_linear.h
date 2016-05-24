@@ -1,5 +1,5 @@
-#ifndef VANDERPOL_H
-#define VANDERPOL_H
+#ifndef CONTINUOUS_DISCRETE_VANDERPOL_LINEAR_H
+#define CONTINUOUS_DISCRETE_VANDERPOL_LINEAR_H
 
 #include "continuous_discrete_task.h"
 
@@ -46,4 +46,4 @@ protected:
 }  // end Tasks
 
 
-#endif  // VANDERPOL_H
+#endif  // CONTINUOUS_DISCRETE_VANDERPOL_LINEAR_H

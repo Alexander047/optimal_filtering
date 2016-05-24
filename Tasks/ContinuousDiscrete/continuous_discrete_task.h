@@ -1,5 +1,5 @@
-#ifndef CONTINUOUSDISCRETETASK_H
-#define CONTINUOUSDISCRETETASK_H
+#ifndef CONTINUOUS_DISCRETE_TASK_H
+#define CONTINUOUS_DISCRETE_TASK_H
 
 #include "../task.h"
 
@@ -93,4 +93,4 @@ protected:
 using CDTask = Tasks::ContinuousDiscrete::ContinuousDiscreteTask;
 
 
-#endif  // CONTINUOUSDISCRETETASK_H
+#endif  // CONTINUOUS_DISCRETE_TASK_H

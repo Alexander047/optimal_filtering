@@ -13,7 +13,7 @@ ContinuousDiscreteFilter::ContinuousDiscreteFilter (const FilterParameters &inpu
       : Filter (input, parent), m_task (task)
 {
     order_multiplicity = input.orderMultiplicity();
-    m_type             = "н-д";
+    m_type             = "нд";
 }
 
 ContinuousDiscreteFilter::~ContinuousDiscreteFilter()

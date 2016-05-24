@@ -1,5 +1,5 @@
-#ifndef LANDING_H
-#define LANDING_H
+#ifndef CONTINUOUS_DISCRETE_LANDING_LINEAR_H
+#define CONTINUOUS_DISCRETE_LANDING_LINEAR_H
 
 #include "continuous_discrete_task.h"
 
@@ -44,4 +44,4 @@ protected:
 }  // end Tasks
 
 
-#endif  // LANDING_H
+#endif  // CONTINUOUS_DISCRETE_LANDING_LINEAR_H

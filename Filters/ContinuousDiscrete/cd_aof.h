@@ -1,5 +1,5 @@
-#ifndef CD_AOF_H
-#define CD_AOF_H
+#ifndef CONTINUOUS_DISCRETE_AOF_H
+#define CONTINUOUS_DISCRETE_AOF_H
 
 #include "continuous_discrete_filter.h"
 
@@ -20,8 +20,7 @@ public:
           : ContinuousDiscreteFilter (input, task, parent)
     {
         uint n = task->dimX();
-        m_name = m_type + " " + m_task->approxType() +
-                 "AОФ (" + std::to_string (n * (n + 3) / 2) + ")";
+        m_name = m_task->approxType() +  "AОФнд (" + std::to_string (n * (n + 3) / 2) + ")";
     }
 
 
@@ -43,4 +42,4 @@ protected:
 }  // end Filters
 
 
-#endif  // CD_AOF_H
+#endif  // CONTINUOUS_DISCRETE_AOF_H

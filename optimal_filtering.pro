@@ -17,7 +17,6 @@ SOURCES +=\
     Core/linear_algebra.cc \
     Core/prng.cc \
     Core/stochastic.cc \
-    Filters/ContinuousDiscrete/continuous_discrete_filter.cc \
     Filters/filter.cc \
     Filters/filter_factory.cc \
     Filters/filter_parameters.cc \
@@ -33,16 +32,22 @@ SOURCES +=\
     Gui/main_window.cc \
     Gui/ranges_dialog.cc \
     Gui/specific_parameters_window.cc \
-    main.cc \
     Filters/ContinuousDiscrete/cd_aof.cc \
     Filters/ContinuousDiscrete/cd_dfos.cc \
+    Filters/ContinuousDiscrete/continuous_discrete_filter.cc \
     Filters/ContinuousDiscrete/cd_dfosbo.cc \
     Filters/ContinuousDiscrete/cd_fos.cc \
     Tasks/ContinuousDiscrete/cd_landing_gauss.cc \
     Tasks/ContinuousDiscrete/cd_landing_linear.cc \
     Tasks/ContinuousDiscrete/cd_van_der_pol_gauss.cc \
     Tasks/ContinuousDiscrete/cd_van_der_pol_linear.cc \
-    Core/bvp.cc
+    Filters/Continuous/c_aof.cc \
+    Filters/Continuous/continuous_filter.cc \
+    Tasks/Continuous/c_van_der_pol_gauss.cc \
+    Tasks/Continuous/c_van_der_pol_linear.cc \
+    main.cc \
+    Core/bvp.cc \
+    Filters/Continuous/c_fos.cc
 
 HEADERS  += \
     Core/array.h \
@@ -326,14 +331,19 @@ HEADERS  += \
     Gui/main_window.h \
     Gui/ranges_dialog.h \
     Gui/specific_parameters_window.h \
-    Tasks/ContinuousDiscrete/cd_van_der_pol_linear.h \
-    Tasks/ContinuousDiscrete/cd_landing_gauss.h \
-    Tasks/ContinuousDiscrete/cd_van_der_pol_gauss.h \
-    Tasks/ContinuousDiscrete/cd_landing_linear.h \
+    Tasks/Continuous/continuous_task.h \
     Filters/ContinuousDiscrete/cd_aof.h \
     Filters/ContinuousDiscrete/cd_dfos.h \
     Filters/ContinuousDiscrete/cd_dfosbo.h \
     Filters/ContinuousDiscrete/cd_fos.h \
+    Tasks/ContinuousDiscrete/cd_landing_gauss.h \
+    Tasks/ContinuousDiscrete/cd_landing_linear.h \
+    Tasks/ContinuousDiscrete/cd_van_der_pol_gauss.h \
+    Tasks/ContinuousDiscrete/cd_van_der_pol_linear.h \
+    Filters/Continuous/c_aof.h \
+    Filters/Continuous/continuous_filter.h \
+    Tasks/Continuous/c_van_der_pol_gauss.h \
+    Tasks/Continuous/c_van_der_pol_linear.h \
     Core/bvp.h \
     Libs/Eigen/Array \
     Libs/Eigen/Cholesky \
@@ -366,7 +376,8 @@ HEADERS  += \
     Libs/Eigen/StdVector \
     Libs/Eigen/SuperLUSupport \
     Libs/Eigen/SVD \
-    Libs/Eigen/UmfPackSupport
+    Libs/Eigen/UmfPackSupport \
+    Filters/Continuous/c_fos.h
 
 RESOURCES += \
     Gui/resources.qrc

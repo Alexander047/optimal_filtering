@@ -6,4 +6,7 @@
 #include "ContinuousDiscrete/cd_dfos.h"
 #include "ContinuousDiscrete/cd_dfosbo.h"
 
+#include "Continuous/c_aof.h"
+#include "Continuous/c_fos.h"
+
 #endif  // FILTERS_H

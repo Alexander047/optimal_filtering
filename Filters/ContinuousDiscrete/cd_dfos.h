@@ -1,5 +1,5 @@
-#ifndef DFOS_H
-#define DFOS_H
+#ifndef CONTINUOUS_DISCRETE_DFOS_H
+#define CONTINUOUS_DISCRETE_DFOS_H
 
 #include "continuous_discrete_filter.h"
 
@@ -20,7 +20,7 @@ public:
           : ContinuousDiscreteFilter (input, task, parent)
     {
         uint n = task->dimX();
-        m_name = m_type + " " + m_task->approxType() + "ФМПд (" + std::to_string (n) + ")";
+        m_name = m_task->approxType() +  "ФМПнд-дп (" + std::to_string (n) + ")";
     }
 
 
@@ -38,4 +38,4 @@ protected:
 }  // end Filters
 
 
-#endif  // DFOS_H
+#endif  // CONTINUOUS_DISCRETE_DFOS_H

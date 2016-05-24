@@ -6,4 +6,7 @@
 #include "ContinuousDiscrete/cd_van_der_pol_linear.h"
 #include "ContinuousDiscrete/cd_van_der_pol_gauss.h"
 
+#include "Continuous/c_van_der_pol_linear.h"
+#include "Continuous/c_van_der_pol_gauss.h"
+
 #endif  // TASKS_H

@@ -1,5 +1,5 @@
-#ifndef CONTINUOUSDISCRETEFILTER_H
-#define CONTINUOUSDISCRETEFILTER_H
+#ifndef CONTINUOUS_DISCRETE_FILTER_H
+#define CONTINUOUS_DISCRETE_FILTER_H
 
 #include "../filter.h"
 #include "Tasks/ContinuousDiscrete/continuous_discrete_task.h"
@@ -43,4 +43,4 @@ protected:
 using CDFilter = Filters::ContinuousDiscrete::ContinuousDiscreteFilter;
 
 
-#endif  // ContinuousDISCRETEFILTER_H
+#endif  // CONTINUOUS_DISCRETE_FILTER_H
