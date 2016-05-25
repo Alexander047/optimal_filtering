@@ -121,10 +121,10 @@ DTask *FilterFactory::createDTask (TASK_ID id, APPROX_TYPE type)
     if (type == APPROX_TYPE::Linear) {
         switch (id) {
         case TASK_ID::Landing:
-            task = new Tasks::Discrete::Landing::DLinear;
+            task = new Tasks::Discrete::Landing::Linear;
             break;
         case TASK_ID::VanDerPol:
-            task = new Tasks::Discrete::VanDerPol::DLinear;
+            task = new Tasks::Discrete::VanDerPol::Linear;
             break;
         default:
             task = nullptr;
@@ -134,10 +134,10 @@ DTask *FilterFactory::createDTask (TASK_ID id, APPROX_TYPE type)
     else {
         switch (id) {
         case TASK_ID::Landing:
-            task = new Tasks::Discrete::Landing::DGauss;
+            task = new Tasks::Discrete::Landing::Gauss;
             break;
         case TASK_ID::VanDerPol:
-            task = new Tasks::Discrete::VanDerPol::DGauss;
+            task = new Tasks::Discrete::VanDerPol::Gauss;
             break;
         default:
             task = nullptr;
@@ -164,8 +164,8 @@ Filters::Filter *FilterFactory::createDFilter (FILTER_ID id,
 //    case FILTER_ID::DFOS:
 //        return new Filters::ContinuousDiscrete::DFOS (input, task);
 //        break;
-    case FILTER_ID::FOSmp:
-        return new Filters::Discrete::FOSMP (input, task);
+    case FILTER_ID::FOS:
+        return new Filters::Discrete::FOS (input, task);
         break;
     default:
         return nullptr;

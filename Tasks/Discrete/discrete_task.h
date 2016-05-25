@@ -9,10 +9,12 @@ namespace Tasks
 namespace Discrete
 {
 
+
 class DiscreteTask : public Task
 {
 
 public:
+
     DiscreteTask() : Task()
     { /*...*/
     }

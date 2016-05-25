@@ -1,4 +1,4 @@
-#include "fosmp.h"
+#include "d_fos.h"
 
 namespace Filters
 {
@@ -6,31 +6,14 @@ namespace Filters
 namespace Discrete
 {
 
-//void FOSMP::zeroIteration()
-//{
-//    DiscreteFilter::zeroIteration();  // тут вычисляются общие для всех фильтров H0, e0 и
-//                                                 // т.д. и заполняется результат 0-го шага
 
-//    Zb.resize (SS);
-
-//    ny = m_task->dimY();
-//    p  = ny * order_multiplicity;
-
-//    for (size_t s = 0; s < SS; ++s) {
-//        Zb[s] = Vector::Zero (p);
-//        for (size_t i = 0; i < ny; ++i) {
-//            Zb[s][i] = y[s][i];
-//        }
-//    }
-//}
-
-void FOSMP::algorithm()
+void FOS::algorithm()
 {
     Matrix Dxz = Cov (x, z);
 
-    for (uint mI = 0; mI < KK; mI++) {
+//    for (uint mI = 0; mI < KK; mI++) {
 
-    }
+//    }
 
     for (size_t n = 1; n < m_result.size(); ++n) {
         for (size_t s = 0; s < SS; ++s) {

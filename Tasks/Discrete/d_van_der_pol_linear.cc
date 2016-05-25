@@ -11,7 +11,7 @@ namespace VanDerPol
 
 
 
-DLinear::DLinear() : DiscreteTask()
+Linear::Linear() : DiscreteTask()
 {
     m_name       = "Осциллятор Ван-дер-Поля";
     m_approxType = "Л-";
@@ -35,7 +35,7 @@ DLinear::DLinear() : DiscreteTask()
     Dw << 4.0, 0.0, 0.0, 4.0;
 }
 
-Vector DLinear::funcA (const Vector &x, double /*t*/) const
+Vector Linear::funcA (const Vector &x, double /*t*/) const
 {
     Vector a (2);
     a[0] = x[1];
@@ -43,14 +43,14 @@ Vector DLinear::funcA (const Vector &x, double /*t*/) const
     return a;
 }
 
-Matrix DLinear::funcB (const Vector &x, double /*t*/) const
+Matrix Linear::funcB (const Vector &x, double /*t*/) const
 {
     Matrix b (2, 2);
     b << 0.0, 0.0, 0.0, x[0];
     return b;
 }
 
-//Vector DLinear::funcB (const Vector &x, double /*t*/) const
+//Vector Linear::funcB (const Vector &x, double /*t*/) const
 //{
 //    Vector b (2, 2);
 //    b[0] = 0;
@@ -59,7 +59,7 @@ Matrix DLinear::funcB (const Vector &x, double /*t*/) const
 //}
 
 
-Vector DLinear::funcTau (const Vector &m, const Matrix & /*D*/, double /*t*/) const
+Vector Linear::funcTau (const Vector &m, const Matrix & /*D*/, double /*t*/) const
 {
     Vector tau (2);
     tau[0] = m[1];
@@ -67,13 +67,13 @@ Vector DLinear::funcTau (const Vector &m, const Matrix & /*D*/, double /*t*/) co
     return tau;
 }
 
-Matrix DLinear::funcTheta (const Vector &m, const Matrix & /*D*/, double t) const
+Matrix Linear::funcTheta (const Vector &m, const Matrix & /*D*/, double t) const
 {
     Matrix B = funcB (m, t);
     return B * B.transpose();
 }
 
-Matrix DLinear::funcAA (const Vector &m, const Matrix & /*D*/, double /*t*/) const
+Matrix Linear::funcAA (const Vector &m, const Matrix & /*D*/, double /*t*/) const
 {
     Matrix A (2, 2);
     A << 0.0, 1.0, -omega * omega - 2.0 * alpha * beta * m[0] * m[1],
@@ -82,7 +82,7 @@ Matrix DLinear::funcAA (const Vector &m, const Matrix & /*D*/, double /*t*/) con
 }
 
 
-Vector DLinear::funcC (const Vector &x) const
+Vector Linear::funcC (const Vector &x) const
 {
     Vector v = Rand::gaussianVector (mw, Dv);
     Vector c (2);
@@ -90,21 +90,21 @@ Vector DLinear::funcC (const Vector &x) const
     return c;
 }
 
-Vector DLinear::funcH (const Vector &m, const Matrix & /* D*/) const
+Vector Linear::funcH (const Vector &m, const Matrix & /* D*/) const
 {
     Vector h (2);
     h << m[0] * m[0] + mw[0], m[1] + mw[1];
     return h;
 }
 
-Matrix DLinear::funcG (const Vector &m, const Matrix & /*D*/) const
+Matrix Linear::funcG (const Vector &m, const Matrix & /*D*/) const
 {
     Matrix g (2, 2);
     g << 2.0 * m[0], 0.0, 0.0, 1.0;
     return g;
 }
 
-Matrix DLinear::funcF (const Vector &m, const Matrix &D) const
+Matrix Linear::funcF (const Vector &m, const Matrix &D) const
 {
     Matrix f (2, 2);
     f (0, 0) = 4.0 * m[0] * m[0] * D (0, 0) + Dw (0, 0);

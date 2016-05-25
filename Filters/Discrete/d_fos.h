@@ -1,5 +1,5 @@
-#ifndef FOSMP_H
-#define FOSMP_H
+#ifndef FOS_H
+#define FOS_H
 
 #include "discrete_filter.h"
 
@@ -11,16 +11,16 @@ namespace Discrete
 {
 
 
-class FOSMP : public DiscreteFilter
+class FOS : public DiscreteFilter
 {
 
 public:
 
-    FOSMP (const FilterParameters &input, const DTask *task, QObject *parent = nullptr)
+    FOS (const FilterParameters &input, const DTask *task, QObject *parent = nullptr)
           : DiscreteFilter (input, task, parent)
     {
         uint p = task->dimY() * input.orderMultiplicity();
-        m_name = m_type + " " + m_task->approxType() + "ФОСмп (" + std::to_string (p) + ")";
+        m_name = m_type + " " + m_task->approxType() + "ФКП (" + std::to_string (p) + ")";
     }
 
 protected:
@@ -36,4 +36,4 @@ protected:
 
 }  // end Filters
 
-#endif // FOSMP_H
+#endif // FOS_H

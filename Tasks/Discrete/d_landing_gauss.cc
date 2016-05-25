@@ -10,7 +10,7 @@ namespace Landing
 {
 
 
-DGauss::DGauss() : DLinear()
+Gauss::Gauss() : Linear()
 {
     m_approxType = "Г-";
 }

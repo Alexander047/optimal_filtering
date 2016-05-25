@@ -1,5 +1,5 @@
-#ifndef DGAUSS_H
-#define DGAUSS_H
+#ifndef DISCRETE_GAUSS_H
+#define DISCRETE_GAUSS_H
 
 #include "d_landing_linear.h"
 
@@ -13,12 +13,15 @@ namespace Discrete
 namespace Landing
 {
 
-class DGauss : public DLinear {
+
+class Gauss : public Linear
+{
 
 public:
-    DGauss();
 
+    Gauss();
 };
+
 
 }  // end Tasks::Discrete::Landing
 
@@ -27,4 +30,4 @@ public:
 }  // end Tasks
 
 
-#endif // DGAUSS_H
+#endif // DISCRETE_GAUSS_H

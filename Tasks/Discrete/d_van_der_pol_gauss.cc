@@ -10,13 +10,13 @@ namespace VanDerPol
 {
 
 
-DGauss::DGauss() : DLinear()
+Gauss::Gauss() : Linear()
 {
     m_approxType = "Г-";
 }
 
 
-Vector DGauss::funcTau (const Vector &m, const Matrix &D, double /*t*/) const
+Vector Gauss::funcTau (const Vector &m, const Matrix &D, double /*t*/) const
 {
     Vector tau (2);
     tau[0] = m[1];
@@ -25,14 +25,14 @@ Vector DGauss::funcTau (const Vector &m, const Matrix &D, double /*t*/) const
     return tau;
 }
 
-Matrix DGauss::funcTheta (const Vector &m, const Matrix &D, double /*t*/) const
+Matrix Gauss::funcTheta (const Vector &m, const Matrix &D, double /*t*/) const
 {
     Matrix theta (2, 2);
     theta << 0.0, 0.0, 0.0, m[0] * m[0] + D (0, 0);
     return theta;
 }
 
-Matrix DGauss::funcAA (const Vector &m, const Matrix &D, double /*t*/) const
+Matrix Gauss::funcAA (const Vector &m, const Matrix &D, double /*t*/) const
 {
     Matrix a (2, 2);
     a (0, 0) = 0.0;
@@ -43,21 +43,21 @@ Matrix DGauss::funcAA (const Vector &m, const Matrix &D, double /*t*/) const
 }
 
 
-Vector DGauss::funcH (const Vector &m, const Matrix &D) const
+Vector Gauss::funcH (const Vector &m, const Matrix &D) const
 {
     Vector h (2);
     h << m[0] * m[0] + D (0, 0) + mw[0], m[1] + mw[1];
     return h;
 }
 
-Matrix DGauss::funcG (const Vector &m, const Matrix & /*D*/) const
+Matrix Gauss::funcG (const Vector &m, const Matrix & /*D*/) const
 {
     Matrix g (2, 2);
     g << 2.0 * m[0], 0.0, 0.0, 1.0;
     return g;
 }
 
-Matrix DGauss::funcF (const Vector &m, const Matrix &D) const
+Matrix Gauss::funcF (const Vector &m, const Matrix &D) const
 {
     Matrix f (2, 2);
     f (0, 0) = 2.0 * D (0, 0) * (2.0 * m[0] * m[0] + D (0, 0)) + Dw (0, 0);

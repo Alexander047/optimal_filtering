@@ -76,21 +76,21 @@ void FilterStartButtonsBox::initControls()
     connect (m_btnContinuousLinearFos, SIGNAL (clicked()), this,
              SLOT (btnContinuousLinearFosClicked()));
 
-    m_btnDiscreteLinearFOSmp = new QPushButton (tr ("Л-ФОСмп"));
-    connect (m_btnDiscreteLinearFOSmp, SIGNAL (clicked()), this,
-             SLOT (btnDiscreteLinearFOSmpClicked()));
+    m_btnDiscreteLinearFOS = new QPushButton (tr ("Л-ФКП"));
+    connect (m_btnDiscreteLinearFOS, SIGNAL (clicked()), this,
+             SLOT (btnDiscreteLinearFOSClicked()));
 
-    m_btnDiscreteGaussFOSmp = new QPushButton (tr ("Г-ФОСмп"));
-    connect (m_btnDiscreteGaussFOSmp, SIGNAL (clicked()), this,
-             SLOT (btnDiscreteGaussFOSmpClicked()));
+    m_btnDiscreteGaussFOS = new QPushButton (tr ("Г-ФКП"));
+    connect (m_btnDiscreteGaussFOS, SIGNAL (clicked()), this,
+             SLOT (btnDiscreteGaussFOSClicked()));
 
-    m_btnDiscreteLinearMFOSmp = new QPushButton (tr ("Л-MФОСмп"));
-    connect (m_btnDiscreteLinearMFOSmp, SIGNAL (clicked()), this,
-             SLOT (btnDiscreteLinearMFOSmpClicked()));
+    m_btnDiscreteLinearMFOS = new QPushButton (tr ("Л-MФКП"));
+    connect (m_btnDiscreteLinearMFOS, SIGNAL (clicked()), this,
+             SLOT (btnDiscreteLinearMFOSClicked()));
 
-    m_btnDiscreteGaussMFOSmp = new QPushButton (tr ("Г-MФОСмп"));
-    connect (m_btnDiscreteGaussMFOSmp, SIGNAL (clicked()), this,
-             SLOT (btnDiscreteGaussMFOSmpClicked()));
+    m_btnDiscreteGaussMFOS = new QPushButton (tr ("Г-MФКП"));
+    connect (m_btnDiscreteGaussMFOS, SIGNAL (clicked()), this,
+             SLOT (btnDiscreteGaussMFOSClicked()));
 }
 
 void FilterStartButtonsBox::computeSizes()
@@ -119,11 +119,6 @@ void FilterStartButtonsBox::initLayouts()
     QHBoxLayout *tab1MainLayout = new QHBoxLayout;
     tab1MainLayout->setMargin (5);
     tab1MainLayout->setSpacing (5);
-
-    // tab2:
-    QHBoxLayout *tab2MainLayout = new QHBoxLayout;
-    tab2MainLayout->setMargin (5);
-    tab2MainLayout->setSpacing (5);
 
     // tab3:
     QHBoxLayout *tab3MainLayout = new QHBoxLayout;
@@ -164,15 +159,15 @@ void FilterStartButtonsBox::initLayouts()
     QVBoxLayout *layoutDformp = new QVBoxLayout;
     layoutDformp->setMargin (0);
     layoutDformp->setSpacing (5);
-    layoutDformp->addWidget (m_btnDiscreteGaussFOSmp);
-    layoutDformp->addWidget (m_btnDiscreteLinearFOSmp);
+    layoutDformp->addWidget (m_btnDiscreteGaussFOS);
+    layoutDformp->addWidget (m_btnDiscreteLinearFOS);
     tab3MainLayout->addLayout (layoutDformp);
 
     QVBoxLayout *layoutDmformp = new QVBoxLayout;
     layoutDmformp->setMargin (0);
     layoutDmformp->setSpacing (5);
-    layoutDmformp->addWidget (m_btnDiscreteGaussMFOSmp);
-    layoutDmformp->addWidget (m_btnDiscreteLinearMFOSmp);
+    layoutDmformp->addWidget (m_btnDiscreteGaussMFOS);
+    layoutDmformp->addWidget (m_btnDiscreteLinearMFOS);
     tab3MainLayout->addLayout (layoutDmformp);
 
     tab1->setLayout (tab1MainLayout);
@@ -253,36 +248,15 @@ void FilterStartButtonsBox::filterOrderMultiplicityChanged (uint /*l*/)
     m_btnContinuousDiscreteGaussDfosbo->setEnabled (true);
     m_btnContinuousDiscreteLinearDfosbo->setEnabled (true);
 
-    m_btnDiscreteLinearFOSmp->setEnabled(true);
-    m_btnDiscreteGaussFOSmp->setEnabled(true);
-    m_btnDiscreteLinearMFOSmp->setEnabled(true);
-    m_btnDiscreteGaussMFOSmp->setEnabled(true);
-}
+    m_btnContinuousGaussAof->setEnabled (true);
+    m_btnContinuousLinearAof->setEnabled (true);
+    m_btnContinuousGaussFos->setEnabled (true);
+    m_btnContinuousLinearFos->setEnabled (true);
 
-void FilterStartButtonsBox::filterOrderMultiplicityChanged (uint l)
-{
-    if (m_currentOrderMult == l) {
-        return;
-    }
-
-    bool enableG = true;
-    bool enableL = true;
-    for (int i = 0; i < m_usedForGauss.size(); i++) {
-        if (m_usedForGauss[i] == l) {
-            enableG = false;
-            i       = 100500;
-        }
-    }
-    for (int i = 0; i < m_usedForLinear.size(); i++) {
-        if (m_usedForLinear[i] == l) {
-            enableL = false;
-            i       = 100500;
-        }
-    }
-
-    m_btnContinuousDiscreteGaussDfosbo->setEnabled (enableG);
-    m_btnContinuousDiscreteLinearDfosbo->setEnabled (enableL);
-    m_currentOrderMult = l;
+    m_btnDiscreteLinearFOS->setEnabled(true);
+    m_btnDiscreteGaussFOS->setEnabled(true);
+    m_btnDiscreteLinearMFOS->setEnabled(true);
+    m_btnDiscreteGaussMFOS->setEnabled(true);
 }
 
 
@@ -368,26 +342,26 @@ void FilterStartButtonsBox::btnContinuousLinearFosClicked()
 
 // Дискретные
 
-void FilterStartButtonsBox::btnDiscreteGaussFOSmpClicked()
+void FilterStartButtonsBox::btnDiscreteGaussFOSClicked()
 {
-    m_btnDiscreteGaussFOSmp->setEnabled(false);
-    emit filterStart (FILTER_TYPE::Discrete, FILTER_ID::FOSmp, APPROX_TYPE::Gauss);
+    m_btnDiscreteGaussFOS->setEnabled(false);
+    emit filterStart (FILTER_TYPE::Discrete, FILTER_ID::FOS, APPROX_TYPE::Gauss);
 }
 
-void FilterStartButtonsBox::btnDiscreteLinearFOSmpClicked()
+void FilterStartButtonsBox::btnDiscreteLinearFOSClicked()
 {
-    m_btnDiscreteLinearFOSmp->setEnabled(false);
-    emit filterStart (FILTER_TYPE::Discrete, FILTER_ID::FOSmp, APPROX_TYPE::Linear);
+    m_btnDiscreteLinearFOS->setEnabled(false);
+    emit filterStart (FILTER_TYPE::Discrete, FILTER_ID::FOS, APPROX_TYPE::Linear);
 }
 
-void FilterStartButtonsBox::btnDiscreteLinearMFOSmpClicked()
+void FilterStartButtonsBox::btnDiscreteLinearMFOSClicked()
 {
-    m_btnDiscreteLinearMFOSmp->setEnabled(false);
-    emit filterStart (FILTER_TYPE::Discrete, FILTER_ID::FOSmp, APPROX_TYPE::Linear);
+    m_btnDiscreteLinearMFOS->setEnabled(false);
+    emit filterStart (FILTER_TYPE::Discrete, FILTER_ID::FOS, APPROX_TYPE::Linear);
 }
 
-void FilterStartButtonsBox::btnDiscreteGaussMFOSmpClicked()
+void FilterStartButtonsBox::btnDiscreteGaussMFOSClicked()
 {
-    m_btnDiscreteGaussMFOSmp->setEnabled(false);
-    emit filterStart (FILTER_TYPE::Discrete, FILTER_ID::FOSmp, APPROX_TYPE::Gauss);
+    m_btnDiscreteGaussMFOS->setEnabled(false);
+    emit filterStart (FILTER_TYPE::Discrete, FILTER_ID::FOS, APPROX_TYPE::Gauss);
 }

@@ -18,7 +18,7 @@ static const double RR = 3390.0;
 
 // линеаризованный объект :
 
-DLinear::DLinear() : DiscreteTask()
+Linear::Linear() : DiscreteTask()
 {
     m_name       = "Спуск ЛА на планету";
     m_approxType = "Л-";
@@ -45,7 +45,7 @@ DLinear::DLinear() : DiscreteTask()
     0.0, 0.0, 0.0, pow (2E-7, 2);
 }
 
-Vector DLinear::funcA (const Vector &x, double t) const
+Vector Linear::funcA (const Vector &x, double t) const
 {
     KK = (t < 45.0 ? -0.3 : 0.3);
 
@@ -58,23 +58,23 @@ Vector DLinear::funcA (const Vector &x, double t) const
     return a;
 }
 
-Matrix DLinear::funcB (const Vector & /*x*/, double /*t*/) const
+Matrix Linear::funcB (const Vector & /*x*/, double /*t*/) const
 {
     return Matrix::Zero (3, 3);
 }
 
-Vector DLinear::funcTau (const Vector &m, const Matrix & /*D*/, double t) const
+Vector Linear::funcTau (const Vector &m, const Matrix & /*D*/, double t) const
 {
     // tau (m, D, t) = a (m, t) :
     return funcA (m, t);
 }
 
-Matrix DLinear::funcTheta (const Vector & /*m*/, const Matrix & /*D*/, double /*t*/) const
+Matrix Linear::funcTheta (const Vector & /*m*/, const Matrix & /*D*/, double /*t*/) const
 {
     return Matrix::Zero (3, 3);
 }
 
-Matrix DLinear::funcAA (const Vector &m, const Matrix & /*D*/, double /*t*/) const
+Matrix Linear::funcAA (const Vector &m, const Matrix & /*D*/, double /*t*/) const
 {
     double e = exp (-BB * m[2]);
     Matrix a (3, 3);
@@ -95,7 +95,7 @@ Matrix DLinear::funcAA (const Vector &m, const Matrix & /*D*/, double /*t*/) con
 }
 
 
-Vector DLinear::funcC (const Vector &x) const
+Vector Linear::funcC (const Vector &x) const
 {
     double e = exp (-BB * x[2]);
     Vector w = Rand::gaussianVector (mw, Dw);
@@ -107,7 +107,7 @@ Vector DLinear::funcC (const Vector &x) const
     return c;
 }
 
-Vector DLinear::funcH (const Vector &m, const Matrix & /* D*/) const
+Vector Linear::funcH (const Vector &m, const Matrix & /* D*/) const
 {
     double e = exp (-BB * m[2]);
     Vector h (2);
@@ -118,7 +118,7 @@ Vector DLinear::funcH (const Vector &m, const Matrix & /* D*/) const
     return h;
 }
 
-Matrix DLinear::funcG (const Vector &m, const Matrix & /*D*/) const
+Matrix Linear::funcG (const Vector &m, const Matrix & /*D*/) const
 {
     double e = exp (-BB * m[2]);
     Matrix g (2, 3);
@@ -134,7 +134,7 @@ Matrix DLinear::funcG (const Vector &m, const Matrix & /*D*/) const
     return g;
 }
 
-Matrix DLinear::funcF (const Vector &m, const Matrix &D) const
+Matrix Linear::funcF (const Vector &m, const Matrix &D) const
 {
     double e  = exp (-BB * m[2]);
     Matrix cx = funcG (m, D);

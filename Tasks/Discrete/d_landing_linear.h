@@ -1,5 +1,5 @@
-#ifndef CLINEAR_H
-#define CLINEAR_H
+#ifndef DISCRETE_LINEAR_H
+#define DISCRETE_LINEAR_H
 
 #include "discrete_task.h"
 
@@ -13,10 +13,13 @@ namespace Discrete
 namespace Landing
 {
 
-class DLinear : public DiscreteTask
+class Linear : public DiscreteTask
 {
+
 public:
-    DLinear();
+
+    Linear();
+
 
 protected:
 
@@ -39,4 +42,4 @@ protected:
 }  // end Tasks
 
 
-#endif // CLINEAR_H
+#endif // DISCRETE_LINEAR_H

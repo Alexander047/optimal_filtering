@@ -1,5 +1,5 @@
-#ifndef DVANDERPOL_H
-#define DVANDERPOL_H
+#ifndef DISCRETE_VANDERPOL_LINEAR_H
+#define DISCRETE_VANDERPOL_LINEAR_H
 
 #include "discrete_task.h"
 
@@ -14,9 +14,13 @@ namespace VanDerPol
 {
 
 
-class DLinear : public DiscreteTask {
+class Linear : public DiscreteTask
+{
+
 public:
-    DLinear();
+
+    Linear();
+
 
 protected:
 
@@ -41,4 +45,4 @@ protected:
 }  // end Tasks
 
 
-#endif // DVANDERPOL_H
+#endif // DISCRETE_VANDERPOL_LINEAR_H

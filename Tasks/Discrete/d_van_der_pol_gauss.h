@@ -1,5 +1,5 @@
-#ifndef DVANDERPOLGAUSS_H
-#define DVANDERPOLGAUSS_H
+#ifndef DISCRETE_VANDERPOL_GAUSS_H
+#define DISCRETE_VANDERPOL_GAUSS_H
 
 #include "d_van_der_pol_linear.h"
 
@@ -14,10 +14,11 @@ namespace VanDerPol
 {
 
 
-class DGauss : public DLinear {
+class Gauss : public Linear
+{
 
 public:
-    DGauss();
+    Gauss();
 
 protected:
 
@@ -30,6 +31,7 @@ protected:
     Matrix funcF (const Vector &m, const Matrix &D) const override;
 };
 
+
 }  // end Tasks::Discrete::VanDerPol
 
 }  // end Tasks::Discrete
@@ -37,4 +39,4 @@ protected:
 }  // end Tasks
 
 
-#endif // DVANDERPOLGAUSS_H
+#endif // DISCRETE_VANDERPOL_GAUSS_H
