@@ -25,14 +25,14 @@ private:
 
     CDTask *createCDTask (TASK_ID id, APPROX_TYPE type);
     CTask *createCTask (TASK_ID id, APPROX_TYPE type);
-    // DTask* createDTask (TASK_ID id, APPROX_TYPE type) { }
+    DTask *createDTask (TASK_ID id, APPROX_TYPE type);
 
     Filters::Filter *createCDFilter (FILTER_ID id, const Filters::FilterParameters &input,
                                      const CDTask *task);
     Filters::Filter* createCFilter (FILTER_ID id, const Filters::FilterParameters& input,
                                     const CTask* task);
-    // Filters::Filter* createDFilter (FILTER_ID id, const Filters::FilterParameters& input, const
-    // DTask* task) {}
+     Filters::Filter* createDFilter (FILTER_ID id, const Filters::FilterParameters& input,
+                                     const DTask* task);
 };
 
 

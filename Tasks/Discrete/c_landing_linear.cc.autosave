@@ -1,0 +1,22 @@
+#include "c_landing_linear.h"
+
+namespace Tasks
+{
+
+namespace Discrete
+{
+
+namespace Landing
+{
+
+
+CLinear::CLinear()
+{
+
+}
+
+}  // end Tasks::Discrete::Landing
+
+}  // end Tasks::Discrete
+
+}  // end Tasks

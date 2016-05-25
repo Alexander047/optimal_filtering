@@ -9,4 +9,6 @@
 #include "Continuous/c_aof.h"
 #include "Continuous/c_fos.h"
 
+#include "Discrete/d_fos.h"
+
 #endif  // FILTERS_H
