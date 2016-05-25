@@ -58,7 +58,6 @@ void FilterStartButtonsBox::initControls()
     connect (m_btnContinuousDiscreteLinearDfosbo, SIGNAL (clicked()), this,
              SLOT (btnContinuousDiscreteLinearDfosboClicked()));
 
-
     // непрерывные:
 
     m_btnContinuousGaussAof = new QPushButton (tr ("Г-АОФ"));
@@ -76,6 +75,22 @@ void FilterStartButtonsBox::initControls()
     m_btnContinuousLinearFos = new QPushButton (tr ("Л-ФМП"));
     connect (m_btnContinuousLinearFos, SIGNAL (clicked()), this,
              SLOT (btnContinuousLinearFosClicked()));
+
+    m_btnDiscreteLinearFOSmp = new QPushButton (tr ("Л-ФОСмп"));
+    connect (m_btnDiscreteLinearFOSmp, SIGNAL (clicked()), this,
+             SLOT (btnDiscreteLinearFOSmpClicked()));
+
+    m_btnDiscreteGaussFOSmp = new QPushButton (tr ("Г-ФОСмп"));
+    connect (m_btnDiscreteGaussFOSmp, SIGNAL (clicked()), this,
+             SLOT (btnDiscreteGaussFOSmpClicked()));
+
+    m_btnDiscreteLinearMFOSmp = new QPushButton (tr ("Л-MФОСмп"));
+    connect (m_btnDiscreteLinearMFOSmp, SIGNAL (clicked()), this,
+             SLOT (btnDiscreteLinearMFOSmpClicked()));
+
+    m_btnDiscreteGaussMFOSmp = new QPushButton (tr ("Г-MФОСмп"));
+    connect (m_btnDiscreteGaussMFOSmp, SIGNAL (clicked()), this,
+             SLOT (btnDiscreteGaussMFOSmpClicked()));
 }
 
 void FilterStartButtonsBox::computeSizes()
@@ -105,6 +120,17 @@ void FilterStartButtonsBox::initLayouts()
     tab1MainLayout->setMargin (5);
     tab1MainLayout->setSpacing (5);
 
+    // tab2:
+    QHBoxLayout *tab2MainLayout = new QHBoxLayout;
+    tab2MainLayout->setMargin (5);
+    tab2MainLayout->setSpacing (5);
+
+    // tab3:
+    QHBoxLayout *tab3MainLayout = new QHBoxLayout;
+    tab3MainLayout->setMargin (5);
+    tab3MainLayout->setSpacing (5);
+
+    // непрерывно-дискретные фильтры
     QVBoxLayout *layoutCDAof = new QVBoxLayout;
     layoutCDAof->setMargin (0);
     layoutCDAof->setSpacing (5);
@@ -133,6 +159,22 @@ void FilterStartButtonsBox::initLayouts()
     layoutCDDfosbo->addWidget (m_btnContinuousDiscreteLinearDfosbo);
     tab1MainLayout->addLayout (layoutCDDfosbo);
 
+
+    // дискретные фильтры
+    QVBoxLayout *layoutDformp = new QVBoxLayout;
+    layoutDformp->setMargin (0);
+    layoutDformp->setSpacing (5);
+    layoutDformp->addWidget (m_btnDiscreteGaussFOSmp);
+    layoutDformp->addWidget (m_btnDiscreteLinearFOSmp);
+    tab3MainLayout->addLayout (layoutDformp);
+
+    QVBoxLayout *layoutDmformp = new QVBoxLayout;
+    layoutDmformp->setMargin (0);
+    layoutDmformp->setSpacing (5);
+    layoutDmformp->addWidget (m_btnDiscreteGaussMFOSmp);
+    layoutDmformp->addWidget (m_btnDiscreteLinearMFOSmp);
+    tab3MainLayout->addLayout (layoutDmformp);
+
     tab1->setLayout (tab1MainLayout);
 
 
@@ -156,6 +198,9 @@ void FilterStartButtonsBox::initLayouts()
     tab2MainLayout->addLayout (layoutCFos);
 
     tab2->setLayout (tab2MainLayout);
+
+    tab3->setLayout(tab3MainLayout);
+
 }
 
 void FilterStartButtonsBox::clearAll()
@@ -196,6 +241,48 @@ void FilterStartButtonsBox::filterOrderMultiplicityChanged (uint /*l*/)
 //    m_btnContinuousDiscreteGaussDfosbo->setEnabled (enableG);
 //    m_btnContinuousDiscreteLinearDfosbo->setEnabled (enableL);
 //    m_currentOrderMult = l;
+
+    m_usedForLinear.clear();
+    m_usedForGauss.clear();
+    m_btnContinuousDiscreteGaussAof->setEnabled (true);
+    m_btnContinuousDiscreteLinearAof->setEnabled (true);
+    m_btnContinuousDiscreteGaussFos->setEnabled (true);
+    m_btnContinuousDiscreteLinearFos->setEnabled (true);
+    m_btnContinuousDiscreteGaussDfos->setEnabled (true);
+    m_btnContinuousDiscreteLinearDfos->setEnabled (true);
+    m_btnContinuousDiscreteGaussDfosbo->setEnabled (true);
+    m_btnContinuousDiscreteLinearDfosbo->setEnabled (true);
+
+    m_btnDiscreteLinearFOSmp->setEnabled(true);
+    m_btnDiscreteGaussFOSmp->setEnabled(true);
+    m_btnDiscreteLinearMFOSmp->setEnabled(true);
+    m_btnDiscreteGaussMFOSmp->setEnabled(true);
+}
+
+void FilterStartButtonsBox::filterOrderMultiplicityChanged (uint l)
+{
+    if (m_currentOrderMult == l) {
+        return;
+    }
+
+    bool enableG = true;
+    bool enableL = true;
+    for (int i = 0; i < m_usedForGauss.size(); i++) {
+        if (m_usedForGauss[i] == l) {
+            enableG = false;
+            i       = 100500;
+        }
+    }
+    for (int i = 0; i < m_usedForLinear.size(); i++) {
+        if (m_usedForLinear[i] == l) {
+            enableL = false;
+            i       = 100500;
+        }
+    }
+
+    m_btnContinuousDiscreteGaussDfosbo->setEnabled (enableG);
+    m_btnContinuousDiscreteLinearDfosbo->setEnabled (enableL);
+    m_currentOrderMult = l;
 }
 
 
@@ -276,4 +363,31 @@ void FilterStartButtonsBox::btnContinuousLinearFosClicked()
 {
 //    m_btnContinuousLinearFos->setEnabled (false);
     emit filterStart (FILTER_TYPE::Continuous, FILTER_ID::FOS, APPROX_TYPE::Linear);
+}
+
+
+// Дискретные
+
+void FilterStartButtonsBox::btnDiscreteGaussFOSmpClicked()
+{
+    m_btnDiscreteGaussFOSmp->setEnabled(false);
+    emit filterStart (FILTER_TYPE::Discrete, FILTER_ID::FOSmp, APPROX_TYPE::Gauss);
+}
+
+void FilterStartButtonsBox::btnDiscreteLinearFOSmpClicked()
+{
+    m_btnDiscreteLinearFOSmp->setEnabled(false);
+    emit filterStart (FILTER_TYPE::Discrete, FILTER_ID::FOSmp, APPROX_TYPE::Linear);
+}
+
+void FilterStartButtonsBox::btnDiscreteLinearMFOSmpClicked()
+{
+    m_btnDiscreteLinearMFOSmp->setEnabled(false);
+    emit filterStart (FILTER_TYPE::Discrete, FILTER_ID::FOSmp, APPROX_TYPE::Linear);
+}
+
+void FilterStartButtonsBox::btnDiscreteGaussMFOSmpClicked()
+{
+    m_btnDiscreteGaussMFOSmp->setEnabled(false);
+    emit filterStart (FILTER_TYPE::Discrete, FILTER_ID::FOSmp, APPROX_TYPE::Gauss);
 }
