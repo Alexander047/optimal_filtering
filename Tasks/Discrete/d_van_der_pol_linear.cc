@@ -50,6 +50,15 @@ Matrix DLinear::funcB (const Vector &x, double /*t*/) const
     return b;
 }
 
+//Vector DLinear::funcB (const Vector &x, double /*t*/) const
+//{
+//    Vector b (2, 2);
+//    b[0] = 0;
+//    b[1] = x[0];
+//    return b;
+//}
+
+
 Vector DLinear::funcTau (const Vector &m, const Matrix & /*D*/, double /*t*/) const
 {
     Vector tau (2);

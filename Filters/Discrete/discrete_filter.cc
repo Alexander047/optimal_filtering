@@ -12,7 +12,7 @@ DiscreteFilter::DiscreteFilter (const FilterParameters &input,
       : Filter (input, parent), m_task (task)
 {
     order_multiplicity = input.orderMultiplicity();
-    m_type             = "н-д";
+    m_type             = "д";
 }
 
 DiscreteFilter::~DiscreteFilter()

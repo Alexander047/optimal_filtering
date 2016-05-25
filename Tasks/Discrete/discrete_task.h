@@ -23,6 +23,15 @@ public:
         return funcA (x, t);
     }
 
+//    Vector a (const Vector &x, const Vector &V) const
+//    {
+//        return funcA (x, t);
+//    }
+
+//    Vector b (const Vector &x, const Vector &W) const {
+
+//    }
+
     Matrix B (const Vector &x, double t) const
     {
         return funcB (x, t);

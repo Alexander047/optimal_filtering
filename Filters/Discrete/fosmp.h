@@ -20,19 +20,15 @@ public:
           : DiscreteFilter (input, task, parent)
     {
         uint p = task->dimY() * input.orderMultiplicity();
-        m_name = m_type + " " + m_task->approxType() + "ФКПд (" + std::to_string (p) + ")";
+        m_name = m_type + " " + m_task->approxType() + "ФОСмп (" + std::to_string (p) + ")";
     }
 
 protected:
 
-    void init() override;
-    void zeroIteration() override;
     void algorithm() override;
 
-    uint ny, p;
-    Array< Vector > Zb;
-    Matrix Gamma, T, DZb, DxZb;
-    Vector kappa, mx, mZb;
+    Matrix Gamma, T;
+    Vector kappa;
 };
 
 
