@@ -25,26 +25,30 @@ Linear::Linear() : ContinuousDiscreteTask()
     m_name       = "Спуск ЛА на планету";
     m_approxType = "Л-";
 
-    mx.resize (3);
-    mx << 6.0, DegToRad (-18.0), 100.0;
+    m_dimX = 3;
+    m_dimY = 2;
+    m_dimV = 3;
+    m_dimW = 4;
 
-    Dx.resize (3, 3);
-    Dx << pow (15E-3, 2), 0.0, 0.0, 0.0, pow (DegToRad (1.0), 2), 0.0, 0.0, 0.0,
-    pow (3.5, 2);  /// 7.0
+    mx = Vector (m_dimX);
+    mx << 6.0,
+          DegToRad (-18.0),
+          100.0;
 
-    mv.resize (3);
-    mv << 0.0, 0.0, 0.0;
+    Dx = Matrix (m_dimX, m_dimX);
+    Dx << pow (15E-3, 2), 0.0,                     0.0,
+          0.0,            pow (DegToRad (1.0), 2), 0.0,
+          0.0,            0.0,                     pow (7.0, 2);
 
-    Dv.resize (3, 3);
-    Dv << 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0;
+    mv = Vector::Zero (m_dimV);
+    Dv = Matrix::Zero (m_dimV, m_dimV);
 
-    my = Vector::Zero (2);
-    Dy = Matrix::Zero (2, 2);
-    mw = Vector::Zero (4);
-
-    Dw.resize (4, 4);
-    Dw << pow (1E-2, 2), 0.0, 0.0, 0.0, 0.0, pow (1E-2, 2), 0.0, 0.0, 0.0, 0.0, pow (2E-7, 2), 0.0,
-    0.0, 0.0, 0.0, pow (2E-7, 2);
+    mw = Vector::Zero (m_dimW);
+    Dw = Matrix (m_dimW, m_dimW);
+    Dw << pow (1E-2, 2), 0.0,           0.0,           0.0,
+          0.0,           pow (1E-2, 2), 0.0,           0.0,
+          0.0,           0.0,           pow (2E-7, 2), 0.0,
+          0.0,           0.0,           0.0,           pow (2E-7, 2);
 }
 
 Vector Linear::funcA (const Vector &x, double t) const

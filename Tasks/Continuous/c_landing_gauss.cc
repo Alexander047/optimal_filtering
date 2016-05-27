@@ -1,4 +1,4 @@
-#include "c_van_der_pol_gauss.h"
+#include "c_landing_gauss.h"
 
 
 namespace Tasks
@@ -7,7 +7,7 @@ namespace Tasks
 namespace Continuous
 {
 
-namespace VanDerPol
+namespace Landing
 {
 
 
@@ -18,7 +18,7 @@ Gauss::Gauss () :
 }
 
 
-}  // end Tasks::Continuous::VanDerPol
+}  // end Tasks::Continuous::Landing
 
 }  // end Tasks::Continuous
 

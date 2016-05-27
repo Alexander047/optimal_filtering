@@ -23,14 +23,12 @@ Linear::Linear() : ContinuousDiscreteTask()
     mx << 10.0, -3.0;
 
     mv = Vector::Zero (2);
-    my = Vector::Zero (2);
 
     mw << 1.0, 1.5;
 
     Dx << 5.0, 0.0, 0.0, 5.0;
 
     Dv = Matrix::Identity (2, 2);
-    Dy = Matrix::Zero (2, 2);
 
     Dw << 4.0, 0.0, 0.0, 4.0;
 }

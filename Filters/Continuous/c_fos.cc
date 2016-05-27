@@ -11,7 +11,7 @@ namespace Continuous
 FOS::FOS (const FilterParameters &input, const CTask *task, QObject *parent)
       : ContinuousFilter (input, task, parent)
 {
-    uint n = task->dimX();
+    long n = task->dimX();
     m_name = m_task->approxType() + "ФОСн (" + std::to_string (n) + ")";
 }
 
@@ -21,7 +21,7 @@ void FOS::zeroIteration()
 
     dy.resize (SS);
     for (size_t s = 0; s < SS; ++s) {
-        dy[0] = Vector::Zero (m_task->dimY());
+        dy[s] = Vector::Zero (m_task->dimY());
     }
 }
 

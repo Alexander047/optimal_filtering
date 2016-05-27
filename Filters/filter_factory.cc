@@ -36,9 +36,7 @@ CTask *FilterFactory::createCTask (TASK_ID id, APPROX_TYPE type)
     if (type == APPROX_TYPE::Linear) {
         switch (id) {
         case TASK_ID::Landing:
-//            return new Tasks::Continuous::Landing::Linear;
-            qDebug() << "No Landing for continuous filters";
-            return nullptr;
+            return new Tasks::Continuous::Landing::Linear;
         case TASK_ID::VanDerPol:
             return new Tasks::Continuous::VanDerPol::Linear;
         }
@@ -46,9 +44,7 @@ CTask *FilterFactory::createCTask (TASK_ID id, APPROX_TYPE type)
     else {
         switch (id) {
         case TASK_ID::Landing:
-//            return new Tasks::Continuous::Landing::Gauss;
-            qDebug() << "No Landing for continuous filters";
-            return nullptr;
+            return new Tasks::Continuous::Landing::Gauss;
         case TASK_ID::VanDerPol:
             return new Tasks::Continuous::VanDerPol::Gauss;
         }

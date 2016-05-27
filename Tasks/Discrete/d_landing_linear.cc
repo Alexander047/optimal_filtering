@@ -36,8 +36,6 @@ Linear::Linear() : DiscreteTask()
     Dv.resize (3, 3);
     Dv << 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0;
 
-    my = Vector::Zero (2);
-    Dy = Matrix::Zero (2, 2);
     mw = Vector::Zero (4);
 
     Dw.resize (4, 4);
