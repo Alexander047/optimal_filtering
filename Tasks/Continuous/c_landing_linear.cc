@@ -92,8 +92,24 @@ Matrix Linear::funcD  (const Vector &x, double t) const
     return d;
 }
 
+Matrix Linear::funcQ (const Vector &x, const Matrix &/*D*/, double t) const
+{
+    Matrix b = funcB (x, t);
+    return b * b.transpose();
+}
 
-Matrix Linear::funcAA (const Vector &m, double /*t*/) const
+Matrix Linear::funcS (const Vector &/*x*/, const Matrix &/*D*/, double /*t*/) const
+{
+    return Matrix::Zero (m_dimX, m_dimY);
+}
+
+Matrix Linear::funcR (const Vector &x, const Matrix &/*D*/, double t) const
+{
+    Matrix d = funcD (x, t);
+    return d * d.transpose();
+}
+
+Matrix Linear::funcAA (const Vector &m, const Matrix &/*D*/, double /*t*/) const
 {
     double e = exp (-BB * m[2]);
     Matrix a (m_dimX, m_dimX);
@@ -113,7 +129,7 @@ Matrix Linear::funcAA (const Vector &m, double /*t*/) const
     return a;
 }
 
-Matrix Linear::funcG  (const Vector &m, double /*t*/) const
+Matrix Linear::funcG  (const Vector &m, const Matrix &/*D*/, double /*t*/) const
 {
     double e = exp (-BB * m[2]);
     Matrix g (m_dimY, m_dimX);

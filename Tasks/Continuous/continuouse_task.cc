@@ -41,37 +41,34 @@ Matrix ContinuousTask::D (const Vector &x, double t) const
     return funcD (x, t);
 }
 
-Matrix ContinuousTask::A (const Vector &x, double t) const
+Matrix ContinuousTask::A (const Vector &m, const Matrix &D, double t) const
 {
-    assert (x.size() == m_dimX && "ContinuousTask::A(x,t) : corrupt dim of x");
-    return funcAA (x, t);
+    assert (m.size() == m_dimX && "ContinuousTask::A(m,D,t) : corrupt dim of m");
+    return funcAA (m, D, t);
 }
 
-Matrix ContinuousTask::G (const Vector &x, double t) const
+Matrix ContinuousTask::G (const Vector &m, const Matrix &D, double t) const
 {
-    assert (x.size() == m_dimX && "ContinuousTask::G(x,t) : corrupt dim of x");
-    return funcG (x, t);
+    assert (m.size() == m_dimX && "ContinuousTask::G(m,D,t) : corrupt dim of m");
+    return funcG (m, D, t);
 }
 
-Matrix ContinuousTask::K (const Vector &x, const Matrix &D, double t) const
+Matrix ContinuousTask::K (const Vector &m, const Matrix &D, double t) const
 {
-    assert (x.size() == m_dimX && "ContinuousTask::K(x,D,t) : corrupt dim of x");
-    assert (D.rows() == m_dimX && "ContinuousTask::K(x,D,t) : corrupt dim of D (count of rows)");
-    assert (D.cols() == m_dimX && "ContinuousTask::K(x,D,t) : corrupt dim of D (count of cols)");
-    Matrix d = funcD (x, t);
-    return D * funcG(x,t).transpose() * LinAlg::PseudoInverseSVD (d * d.transpose());
+    assert (m.size() == m_dimX && "ContinuousTask::K(m,D,t) : corrupt dim of m");
+    assert (D.rows() == m_dimX && "ContinuousTask::K(m,D,t) : corrupt dim of D (count of rows)");
+    assert (D.cols() == m_dimX && "ContinuousTask::K(m,D,t) : corrupt dim of D (count of cols)");
+    return (D * funcG(m,D,t).transpose() + funcS(m,D,t)) * LinAlg::PseudoInverseSVD (funcR(m,D,t));
 }
 
-Matrix ContinuousTask::Psy (const Vector &x, const Matrix &D, double t) const
+Matrix ContinuousTask::Psy (const Vector &m, const Matrix &D, double t) const
 {
-    assert (x.size() == m_dimX && "ContinuousTask::Psy(x,D,t) : corrupt dim of x");
-    assert (D.rows() == m_dimX && "ContinuousTask::Psy(x,D,t) : corrupt dim of D (count of rows)");
-    assert (D.cols() == m_dimX && "ContinuousTask::Psy(x,D,t) : corrupt dim of D (count of cols)");
-    Matrix k = K (x, D, t);
-    Matrix a = funcAA (x, t);
-    Matrix b = funcB (x, t);
-    Matrix d = funcD (x, t);
-    return a * D + D * a.transpose() + b * b.transpose() - k * d * d.transpose() * k.transpose();
+    assert (m.size() == m_dimX && "ContinuousTask::Psy(m,D,t) : corrupt dim of m");
+    assert (D.rows() == m_dimX && "ContinuousTask::Psy(m,D,t) : corrupt dim of D (count of rows)");
+    assert (D.cols() == m_dimX && "ContinuousTask::Psy(m,D,t) : corrupt dim of D (count of cols)");
+    Matrix k = K (m, D, t);
+    Matrix a = funcAA (m, D, t);
+    return a * D + D * a.transpose() + funcQ (m, D, t) - k * funcR (m, D, t) * k.transpose();
 }
 
 

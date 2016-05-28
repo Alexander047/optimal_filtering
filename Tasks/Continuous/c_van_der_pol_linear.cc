@@ -58,7 +58,7 @@ Matrix Linear::funcB  (const Vector &x, double /*t*/) const
 Vector Linear::funcC  (const Vector &x, double /*t*/) const
 {
     Vector c (m_dimY);
-    c << x[0] * x[0],
+    c << x[0],
          x[1];
     return c;
 }
@@ -71,17 +71,34 @@ Matrix Linear::funcD  (const Vector &/*x*/, double /*t*/) const
     return D;
 }
 
-Matrix Linear::funcAA (const Vector &x, double /*t*/) const
+Matrix Linear::funcQ (const Vector &x, const Matrix &/*D*/,  double t) const
+{
+    Matrix b = funcB (x, t);
+    return b * b.transpose();
+}
+
+Matrix Linear::funcS (const Vector &/*x*/, const Matrix &/*D*/, double /*t*/) const
+{
+    return Matrix::Zero (m_dimX, m_dimY);
+}
+
+Matrix Linear::funcR (const Vector &x, const Matrix &/*D*/,  double t) const
+{
+    Matrix d = funcD (x, t);
+    return d * d.transpose();
+}
+
+Matrix Linear::funcAA (const Vector &m, const Matrix &/*D*/, double /*t*/) const
 {
     Matrix A (m_dimX, m_dimX);
     A(0,0) = 0.0;
     A(0,1) = 1.0;
-    A(1,0) = -omega * omega -2.0 * alpha * beta * x[0] * x[1];
-    A(1,1) = alpha * (1.0 - beta * x[0] * x[0]);
+    A(1,0) = -omega * omega -2.0 * alpha * beta * m[0] * m[1];
+    A(1,1) = alpha * (1.0 - beta * m[0] * m[0]);
     return A;
 }
 
-Matrix Linear::funcG  (const Vector &/*x*/, double /*t*/) const
+Matrix Linear::funcG  (const Vector &/*m*/, const Matrix &/*D*/, double /*t*/) const
 {
     Matrix G (m_dimY, m_dimX);
     G << 1.0, 0.0,
