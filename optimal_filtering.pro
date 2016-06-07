@@ -400,7 +400,10 @@ HEADERS += \
     Tasks/specific_parameters.h \
     Tasks/task.h \
     Tasks/tasks.h \
-    Filters/Discrete/d_fos.h
+    Filters/Discrete/d_fos.h \
+    Filters/function_time.h \
+    Tasks/Continuous/c_landing_linear.h \
+    Tasks/Continuous/c_landing_gauss.h
 
 SOURCES += \
     Core/bvp.cc \
@@ -442,4 +445,8 @@ SOURCES += \
     Tasks/specific_parameters.cc \
     Tasks/task.cc \
     main.cc \
-    Filters/Discrete/d_fos.cc
+    Filters/Discrete/d_fos.cc \
+    Filters/function_time.cc \
+    Tasks/Continuous/continuouse_task.cc \
+    Tasks/Continuous/c_landing_linear.cc \
+    Tasks/Continuous/c_landing_gauss.cc

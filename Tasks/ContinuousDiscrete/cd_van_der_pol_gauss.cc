@@ -44,26 +44,21 @@ Matrix Gauss::funcAA (const Vector &m, const Matrix &D, double /*t*/) const
 }
 
 
-Vector Gauss::funcH (const Vector &m, const Matrix &D) const
+Vector Gauss::funcH (const Vector &m, const Matrix &/*D*/) const
 {
-    Vector h (2);
-    h << m[0] * m[0] + D (0, 0) + mw[0], m[1] + mw[1];
-    return h;
+    return m + mw;
 }
 
-Matrix Gauss::funcG (const Vector &m, const Matrix & /*D*/) const
+Matrix Gauss::funcG (const Vector &/*m*/, const Matrix & /*D*/) const
 {
-    Matrix g (2, 2);
-    g << 2.0 * m[0], 0.0, 0.0, 1.0;
-    return g;
+    return Matrix::Identity (2, 2);
 }
 
-Matrix Gauss::funcF (const Vector &m, const Matrix &D) const
+Matrix Gauss::funcF (const Vector &/*m*/, const Matrix &D) const
 {
-    Matrix f (2, 2);
-    f (0, 0) = 2.0 * D (0, 0) * (2.0 * m[0] * m[0] + D (0, 0)) + Dw (0, 0);
-    f (0, 1) = f (1, 0) = 2.0 * m[0] * D (0, 1) + Dw (0, 1);
-    f (1, 1) = D (1, 1) + Dw (1, 1);
+    Matrix f = D;
+    f(0,0) += Dw(0,0);
+    f(1,1) += Dw(1,1);
     return f;
 }
 

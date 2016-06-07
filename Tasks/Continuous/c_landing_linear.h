@@ -1,5 +1,5 @@
-#ifndef CONTINUOUS_VANDERPOL_LINEAR_H
-#define CONTINUOUS_VANDERPOL_LINEAR_H
+#ifndef CONTINUOUS_LANDING_LINEAR_H
+#define CONTINUOUS_LANDING_LINEAR_H
 
 #include "continuous_task.h"
 
@@ -10,7 +10,7 @@ namespace Tasks
 namespace Continuous
 {
 
-namespace VanDerPol
+namespace Landing
 {
 
 
@@ -38,11 +38,11 @@ protected:
 };
 
 
-}  // end Tasks::Continuous::VanDerPol
+}  // end Tasks::Continuous::Landing
 
 }  // end Tasks::Continuous
 
 }  // end Tasks
 
 
-#endif // CONTINUOUS_VANDERPOL_LINEAR_H
+#endif // CONTINUOUS_LANDING_LINEAR_H

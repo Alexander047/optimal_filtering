@@ -29,8 +29,9 @@ protected:
 //    Matrix funcB  (const Vector &x, double t) const override;
 //    Vector funcC  (const Vector &x, double t) const override;
 //    Matrix funcD  (const Vector &x, double t) const override;
-//    Matrix funcAA (const Vector &x, double t) const override;
-//    Matrix funcG  (const Vector &x, double t) const override;
+    Matrix funcAA (const Vector &m, const Matrix &D, double t) const override;
+    Matrix funcG (const Vector &m, const Matrix &D, double t) const override;
+    Matrix funcQ (const Vector &m, const Matrix &D, double t) const override;
 };
 
 

@@ -19,133 +19,35 @@ class Task
 public:
 
     Task();
-
-    virtual ~Task()
-    {
-        delete m_params;
-    }
+    virtual ~Task();
 
     Task (const Task &)           = delete;
     Task &operator=(const Task &) = delete;
 
-    const std::string &name() const
-    {
-        return m_name;
-    }
+    const std::string &name() const;
+    const std::string &approxType() const;
+    SpecificParameters *parameters() const;
 
-    const std::string &approxType() const
-    {
-        return m_approxType;
-    }
+    long dimX() const;
+    long dimY() const;
+    long dimV() const;
+    long dimW() const;
 
-    SpecificParameters *parameters() const
-    {
-        return m_params;
-    }
+    const Vector &meanX() const;
+    const Vector &meanV() const;
+    const Vector &meanW() const;
+    const Matrix &covX() const;
+    const Matrix &covV() const;
+    const Matrix &covW() const;
 
-    size_t dimX() const
-    {
-        return mx.size();
-    }
+    Vector x0() const;
 
-    size_t dimY() const
-    {
-        return my.size();
-    }
-
-    size_t dimV() const
-    {
-        return mv.size();
-    }
-
-    size_t dimW() const
-    {
-        return mw.size();
-    }
-
-    const Vector &meanX() const
-    {
-        return mx;
-    }
-
-    const Vector &meanY() const
-    {
-        return my;
-    }
-
-    const Vector &meanV() const
-    {
-        return mv;
-    }
-
-    const Vector &meanW() const
-    {
-        return mw;
-    }
-
-    const Matrix &covX() const
-    {
-        return Dx;
-    }
-
-    const Matrix &covY() const
-    {
-        return Dy;
-    }
-
-    const Matrix &covV() const
-    {
-        return Dv;
-    }
-
-    const Matrix &covW() const
-    {
-        return Dw;
-    }
-
-    Vector x0() const
-    {
-        return Rand::gaussianVector (mx, Dx);
-    }
-
-    void setMeanX (const Vector &m)
-    {
-        mx = m;
-    }
-    void setMeanY (const Vector &m)
-    {
-        my = m;
-    }
-
-    void setMeanV (const Vector &m)
-    {
-        mv = m;
-    }
-
-    void setMeanW (const Vector &m)
-    {
-        mw = m;
-    }
-
-    void setCovX (const Matrix &D)
-    {
-        Dx = D;
-    }
-
-    void setCovY (const Matrix &D)
-    {
-        Dy = D;
-    }
-
-    void setCovV (const Matrix &D)
-    {
-        Dv = D;
-    }
-
-    void setCovW (const Matrix &D)
-    {
-        Dw = D;
-    }
+    void setMeanX (const Vector &m);
+    void setMeanV (const Vector &m);
+    void setMeanW (const Vector &m);
+    void setCovX (const Matrix &D);
+    void setCovV (const Matrix &D);
+    void setCovW (const Matrix &D);
 
 
 protected:
@@ -154,12 +56,15 @@ protected:
     std::string m_approxType;
     SpecificParameters *m_params;
 
+    long m_dimX;
+    long m_dimY;
+    long m_dimV;
+    long m_dimW;
+
     Vector mx;
-    Vector my;
     Vector mv;  // V -- шум объекта
     Vector mw;  // W -- шум измерителя
     Matrix Dx;
-    Matrix Dy;
     Matrix Dv;
     Matrix Dw;
 };

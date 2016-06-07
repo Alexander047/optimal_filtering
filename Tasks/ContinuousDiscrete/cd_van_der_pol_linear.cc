@@ -23,14 +23,12 @@ Linear::Linear() : ContinuousDiscreteTask()
     mx << 10.0, -3.0;
 
     mv = Vector::Zero (2);
-    my = Vector::Zero (2);
 
     mw << 1.0, 1.5;
 
     Dx << 5.0, 0.0, 0.0, 5.0;
 
     Dv = Matrix::Identity (2, 2);
-    Dy = Matrix::Zero (2, 2);
 
     Dw << 4.0, 0.0, 0.0, 4.0;
 }
@@ -67,41 +65,40 @@ Matrix Linear::funcTheta (const Vector &m, const Matrix & /*D*/, double t) const
 Matrix Linear::funcAA (const Vector &m, const Matrix & /*D*/, double /*t*/) const
 {
     Matrix A (2, 2);
-    A << 0.0, 1.0, -omega * omega - 2.0 * alpha * beta * m[0] * m[1],
-    alpha * (1 - beta * m[0] * m[0]);
+    A <<  0.0,                                                1.0,
+         -omega * omega - 2.0 * alpha * beta * m[0] * m[1],  alpha * (1 - beta * m[0] * m[0]);
     return A;
 }
 
 
 Vector Linear::funcC (const Vector &x) const
 {
-    Vector v = Rand::gaussianVector (mw, Dv);
+    Vector w = Rand::gaussianVector (mw, Dw);
     Vector c (2);
-    c << x[0] * x[0] + v[0], x[1] + v[1];
+    c << x[0] + w[0],
+         x[1] + w[1];
     return c;
 }
 
 Vector Linear::funcH (const Vector &m, const Matrix & /* D*/) const
 {
     Vector h (2);
-    h << m[0] * m[0] + mw[0], m[1] + mw[1];
+    h << m[0] + mw[0],
+         m[1] + mw[1];
     return h;
 }
 
-Matrix Linear::funcG (const Vector &m, const Matrix & /*D*/) const
+Matrix Linear::funcG (const Vector &/*m*/, const Matrix & /*D*/) const
 {
     Matrix g (2, 2);
-    g << 2.0 * m[0], 0.0, 0.0, 1.0;
+    g << 1.0, 0.0,
+         0.0, 0.0;
     return g;
 }
 
-Matrix Linear::funcF (const Vector &m, const Matrix &D) const
+Matrix Linear::funcF (const Vector &/*m*/, const Matrix &D) const
 {
-    Matrix f (2, 2);
-    f (0, 0) = 4.0 * m[0] * m[0] * D (0, 0) + Dw (0, 0);
-    f (0, 1) = f (1, 0) = 2.0 * m[0] * D (0, 1) + Dw (0, 1);
-    f (1, 1) = D (1, 1) + Dw (1, 1);
-    return f;
+    return D + Dw;
 }
 
 
